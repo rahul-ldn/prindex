@@ -1,0 +1,377 @@
+
+<html>
+  <head>
+  <!--  <link rel="stylesheet" href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.1.1/papaparse.min.js"></script> -->
+    <link rel="stylesheet" href="chartist.min.css">
+    <script src="chartist.min.js"></script>
+  </head>
+
+
+
+<!-- fetch text
+	Dropdown
+	Headers
+	Legend
+	Labels
+	Fooder - explanation
+		- methodology
+	-->
+
+<!-- establish structure -->
+
+<div id="header">
+	<div id="selector"></div>
+	<div id="logos"></div>
+</div>
+<div id="upper-tier">
+	<div class="ch-tenure" id="chart-tenure-insecurity">
+	</div>
+	<div id="chart-tensure-detail">
+	</div>
+</div>
+<div id="lower-tier">
+	<div class="ch-docs" id="chart-documentation">
+	</div>
+	<div class="ch-reasons" id="chart-reasons">
+		
+	</div>
+</div>
+<div id="footer">
+	</div>
+
+<script>
+	/*Papa.parse("file", {
+		download: true,
+		header: true,
+		complete: function(results) {
+			console.log(results);
+			$.each(results.data, function (ib, el) {
+				if (ib != 0) {
+  //Name  Acronym Affiliation City  Country Website Principal Principal's Representative  URL Logo Link Location  Latitude  Longitude
+  					$.each(el, function(j, cell) {
+						}
+				}
+		}
+	}
+	});*/
+
+	var data_table = [
+	["Country", 
+
+	"% insecure - TOTAL rounded", //1
+	"% secure - TOTAL rounded",
+    "% don't know or refused to answer - TOTAL manually rounded", //3
+
+    "% no documents - TOTAL rounded", //4
+    "% informal documents - TOTAL manually rounded",
+    "% formal documents - TOTAL rounded",
+    "% no documents - OWNERS rounded",
+    "% informal documents - OWNERS manually rounded",
+    "% formal documents - OWNERS rounded",
+    "% no documents - RENTERS rounded",
+    "% informal documents - RENTERS manually rounded",
+    "% formal documents - RENTERS rounded",
+    "% no documents - FAMILY MEMBER OWNS rounded",
+    "% informal documents - FAMILY MEMBER OWNS manually rounded",
+    "% formal documents - FAMILY MEMBER OWNS rounded", //15
+
+    "% insecure - OWNERS rounded",
+    "% don't know or refused to answer - OWNERS manually rounded",
+    "% secure - OWNERS rounded",
+    "% insecure - RENTERS rounded",
+    "% don't know or refused to answer - RENTERS manually rounded",
+    "% secure - RENTERS rounded",
+    "% insecure - URBAN rounded",
+    "% don't know or refused to answer - URBAN manually rounded",
+    "% secure - URBAN rounded",
+    "% insecure - RURAL rounded",
+    "% don't know or refused to answer - RURAL manually rounded",
+    "% secure - RURAL rounded",
+    "% insecure - WOMEN rounded",
+    "% don't know or refused to answer - WOMEN manually rounded",
+    "% secure - WOMEN rounded",
+    "% insecure - MEN rounded",
+    "% don't know or refused to answer - MEN manually rounded",
+    "% secure - MEN rounded",
+
+    "The owner may ask me to leave",//33
+    "The person paying rent may ask me to leave",
+    "Disagreements with family or relatives",
+    "Death of a household member",
+    "Companies may seize",
+    "Lack of money or other resources",
+    "Government may seize",
+    "Issues with customary authorities"],//40
+	["United States", 
+	"13%", "86%", "1%", "3%", "11%",
+    "86%",
+    "0%",
+    "3%",
+    "97%",
+    "3%",
+    "23%",
+    "74%",
+    "5%",
+    "4%",
+    "82%",
+    "7%",
+    "0%",
+    "93%",
+    "19%",
+    "0%",
+    "81%",
+    "13%",
+    "1%",
+    "86%",
+    "14%",
+    "0%",
+    "86%",
+    "14%",
+    "0%",
+    "86%",
+    "13%",
+    "1%",
+    "86%",
+    "68%",
+    "0%",
+    "21%",
+    "34%",
+    "22%",
+     "47%",
+    "19%",
+    "This questions was not asked"
+    ],
+    ["Iran",
+    "42%",
+    "52%",
+    "6%",
+    "1%",
+    "17%",
+    "82%",
+    "1%",
+    "15%",
+    "84%",
+    "2%",
+    "10%",
+    "88%",
+    "1%",
+    "20%",
+    "79%",
+    "36%",
+    "8%",
+    "56%",
+    "53%",
+    "7%",
+    "40%",
+    "42%",
+    "6%",
+    "52%",
+    "42%",
+    "6%",
+    "52%",
+    "37%",
+    "7%",
+    "56%",
+    "47%",
+    "6%",
+    "47%",
+    "63%",
+     "38%",
+    "28%",
+    "29%",
+    "10%",
+    "54%",
+    "9%",
+    "4%"
+    ]];
+
+var chart_tenure_data = {};
+chart_tenure_data['labels'] = [];
+
+/*
+	"% insecure - TOTAL rounded", //1
+	"% secure - TOTAL rounded",
+    "% don't know or refused to answer - TOTAL manually rounded", */
+
+for (var the_country = 1; the_country <3; the_country++){
+	 	var the_country_name = data_table[the_country][0];
+	 	chart_tenure_data[the_country_name]=[];
+	for (var the_tenure = 1; the_tenure <= 3; the_tenure++) {
+		switch (the_tenure) {
+			case 1:
+			chart_tenure_data['labels'][1]="Tenure Inecurity";
+			chart_tenure_data[the_country_name][1]=parseFloat(data_table[the_country][the_tenure]);
+			break;
+ 			case 2:
+			chart_tenure_data.labels[0]="Tenure Security";
+			chart_tenure_data[the_country_name][0]=parseFloat(data_table[the_country][the_tenure]);
+			break;
+			case 3:
+			chart_tenure_data.labels[2]="Don't Know or Refused to Answer";
+			chart_tenure_data[the_country_name][2]=parseFloat(data_table[the_country][the_tenure]);
+			break;
+
+		}
+	}
+}
+console.log(chart_tenure_data);
+
+var chart_reasons_data = {};
+chart_reasons_data['labels'] = [];
+for (var the_country = 0; the_country <3; the_country++){
+	 if (the_country != 0) {
+	 	var the_country_name = data_table[the_country][0];
+	 	chart_reasons_data[the_country_name]=[];
+	 };
+	for (var the_reason = 34; the_reason <= 41; the_reason++) {
+		if (the_country == 0) {
+			chart_reasons_data['labels'][the_reason-34] = data_table[the_country][the_reason];
+		} else {
+			if (data_table[the_country][the_reason] == "This questions was not asked") {
+				data_table[the_country][the_reason] = "0"; //Need to set up alternative text 
+			}
+			chart_reasons_data[the_country_name][the_reason-34] = parseFloat(data_table[the_country][the_reason]);
+		}
+	}
+}
+console.log(chart_reasons_data);
+
+var chart_documentation_data = {};
+chart_documentation_data['labels'] = [];
+for (var the_country = 0; the_country <3; the_country++){
+	 if (the_country != 0) {
+	 	var the_country_name = data_table[the_country][0];
+	 	chart_documentation_data[the_country_name]={};
+	 	chart_documentation_data[the_country_name]['nodocs']=[];
+	 	chart_documentation_data[the_country_name]['formal']=[];
+	 	chart_documentation_data[the_country_name]['informal']=[];
+
+	 };
+	for (var the_documentation = 4; the_documentation <= 15; the_documentation++) {
+		if (the_country == 0) {
+			//chart_documentation_data['labels'][the_documentation-4] = data_table[the_country][the_documentation];
+		} else {
+			var type_of_docs = (the_documentation-1) % 3;
+			var type_of_situation = ((the_documentation-1) - type_of_docs) / 3;
+
+		//	console.log("type of docs was "+type_of_docs);
+			//console.log("type of stiuation initially "+type_of_situation);
+			switch (type_of_situation) {
+				case 0 : //How?
+			//		console.log("Type of Situation = 0");
+					break;
+				case 1 : //Total
+					type_of_situation = 3;
+
+			//console.log("type of situation changed to "+type_of_situation);
+					break;
+
+				case 2 : //Owners
+					type_of_situation = 2;
+
+			//console.log("type of situation changed to "+type_of_situation);
+					break;
+				case 3 : //Renters
+					type_of_situation = 1;
+
+			//console.log("type of situation changed to "+type_of_situation);
+					break;
+				case 4 : //Family Members
+					type_of_situation = 0;
+
+			//console.log("type of situation changed to "+type_of_situation);
+					break;
+			}
+
+
+			switch (type_of_docs) {
+				case 1 : //informal documents
+					chart_documentation_data[the_country_name].informal[type_of_situation] = parseFloat(data_table[the_country][the_documentation]);
+					break;
+				case 2 : //formal documents
+					chart_documentation_data[the_country_name].formal[type_of_situation] = parseFloat(data_table[the_country][the_documentation]);
+					break;
+				case 0 : //no documents
+					chart_documentation_data[the_country_name].nodocs[type_of_situation] = parseFloat(data_table[the_country][the_documentation]);
+					break;
+};
+
+/*
+
+    "% no documents - TOTAL rounded", //4
+    "% informal documents - TOTAL manually rounded",
+    "% formal documents - TOTAL rounded",
+    "% no documents - OWNERS rounded",
+    "% informal documents - OWNERS manually rounded",
+    "% formal documents - OWNERS rounded",
+    "% no documents - RENTERS rounded",
+    "% informal documents - RENTERS manually rounded",
+    "% formal documents - RENTERS rounded",
+    "% no documents - FAMILY MEMBER OWNS rounded",
+    "% informal documents - FAMILY MEMBER OWNS manually rounded",
+    "% formal documents - FAMILY MEMBER OWNS rounded", //15
+			};
+			*/
+		}
+	}
+}
+console.log(chart_documentation_data);
+
+new Chartist.Pie('.ch-tenure', {
+//  labels:
+//  chart_tenure_data['labels'],
+  series: 
+  	chart_tenure_data['United States']
+  	
+}, {
+  donut: true,
+  donutWidth: 60,
+  donutSolid: true,
+ startAngle: 0,
+  showLabel: true
+});
+
+	new Chartist.Bar('.ch-reasons', {
+  labels: 
+  	chart_reasons_data['labels'],
+  series: [
+    chart_reasons_data['United States']
+
+    ]
+}, {
+  seriesBarDistance: 10,
+  reverseData: true,
+  horizontalBars: true,
+  axisY: {
+    offset: 70
+  }
+});
+
+
+new Chartist.Bar('.ch-docs', {
+  labels: chart_documentation_data.labels,
+  series: [
+  	chart_documentation_data[the_country_name].formal,
+  	chart_documentation_data[the_country_name].informal,
+  	chart_documentation_data[the_country_name].nodocs
+  ]
+}, {
+  stackBars: true,
+    horizontalBars: true,
+  axisY: {
+    labelInterpolationFnc: function(value) {
+      return (value) + '%';
+    }
+  }
+}).on('draw', function(data) {
+  if(data.type === 'bar') {
+    data.element.attr({
+      style: 'stroke-width: 30px'
+    });
+  }
+});
+
+</script>
+</html>
