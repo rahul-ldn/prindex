@@ -6,6 +6,392 @@
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.1.1/papaparse.min.js"></script> -->
     <link rel="stylesheet" href="chartist.min.css">
     <script src="chartist.min.js"></script>
+        <script src="jquery-2.1.1.min.js"></script>
+    <style type="text/css">
+    	body {
+    		font-family: "Arial", sans-serif;
+    	}
+
+    	.chart-id-number-upper {
+    		color: #FA5A14 !important;
+    		text-transform: uppercase;
+    		display: inline-block;
+    	}
+
+    	.chart-id-number-lower {
+    		color: white !important;
+    		text-transform: uppercase;
+    		display: inline-block;
+    	}
+
+    	.chart-id {
+    		color: black;
+    		text-transform: uppercase;
+    		display: inline-block;
+    	}
+
+    	.ct-slice-donut-solid {
+    		stroke: white;
+    		stroke-width: 4px !important;
+    	}
+    	.ct-series-a .ct-slice-donut-solid {
+    		fill: #690028 !important;
+    	}
+    	.ct-series-b .ct-slice-donut-solid {
+    		fill: #FA5A14 !important;
+    		
+    	}
+    	.ct-series-c .ct-slice-donut-solid {
+    		fill: #BEBEAF !important;
+    		
+    	}
+
+    	.ct-series-a .ct-bar {
+    		stroke: #690028 !important;
+    		stroke-width: 20px;
+
+    	}
+    	.ct-series-b .ct-bar {
+    		stroke: #FA5A14 !important;
+    		stroke-width: 20px;
+
+    		
+    	}
+    	.ct-series-c .ct-bar {
+    		stroke: #BEBEAF !important;
+    		stroke-width: 20px;
+
+    		
+    	}
+
+    	.ct-chart-donut .ct-label {
+    		font-size: 20;
+    		color: white !important;
+    		fill: white;
+    	}
+
+    	.ch-reasons .ct-series-a .ct-bar  {
+    		stroke: #FA5A14 !important;
+    		stroke-width: 15px;
+    		color: white;
+    		
+    	}
+
+    	.ch-reasons .ct-label {
+    		color: white;
+    		
+    	}
+
+    	.ch-docs .ct-label {
+    		color: white;
+    		
+    	}
+    	#chart-tenure-insecurity {
+    		
+    		height: 200;
+    	}
+		.chart-key {
+			float:left;
+			margin-left: 40
+		}
+
+		.chart-element { 
+			display: inline-block;
+			font-size: 10;
+			color: white; }
+
+    	.chart-key-example {
+    		width: 10;
+    		height: 10;
+    		background-color: white;
+    		display: inline-block; 
+    		margin-right: 5;
+    		margin-left: 10;
+    	}
+
+    	#tenure-pie {
+    		width: 48%
+    		height:250;
+    		float:left;
+    	}
+
+    	#ch-tenure {
+
+    	}
+    	#tenure-detail {
+    		width: 48%;
+    		height: 200;
+    		float: right;
+    	}
+
+    	.labels-tenure-owners {
+    		width: 25px;
+    		display: inline-block;
+
+    	}
+
+    	#owners {
+    		background-image: url("icons/Tenure-type_owner.svg");
+    		height: 25;
+    		width: 25;
+    		background-size: contain;
+    		margin-bottom: 25;
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+    	#renters{
+    		background-image: url("icons/Tenure-type_renter.svg");
+    		height: 25;
+    		width: 25;
+    		background-size: contain;
+    	
+    		margin-bottom: 25;
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+
+    	#urban{
+    		background-image: url("icons/Location_urban.svg");
+    		height: 25;
+    		width: 25;
+    		background-size: contain;
+    	
+    		margin-bottom: 25;
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+    	#rural{
+    		background-image: url("icons/Location_rural.svg");
+    		height: 25;
+    		width: 25;
+    		background-size: contain;
+    	
+    		margin-bottom: 25;
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+    	#women {
+    		background-image: url("icons/Gender_female.svg");
+    		height: 25;
+    		width: 25;
+    		background-size: contain;
+    	
+    		margin-bottom: 50;
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+    	#men {
+    		background-image: url("icons/Gender_male.svg");
+    		height: 25;
+    		width: 25;
+    		background-size: contain;
+    	margin-bottom: 50;
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+
+    	#chart-tenure-owners-l {
+    		
+    		display: inline-block;
+    		width: 200;
+    		margin-left: -35;
+    		margin-right: 40;
+
+    	}
+    	#chart-tenure-owners-r {
+    	display: inline-block;
+    		margin-left: -35;
+    		margin-right: 25;
+    		width: 200;
+    	}
+
+    	#brand {
+    		background-image: url("logos/Prindex_logo_horizontal_orange-white.svg");
+    		height: 75;
+    		width: 175;
+    		background-size: contain;
+    		background-repeat: no-repeat;
+
+    		display: inline-block;
+
+    	}
+
+    	#selector {
+    		width: 200;
+    		padding-left: 25;
+
+    		display: inline-block;
+
+    	}
+
+    	#logos {
+    		float: right;
+    		width: 400;
+
+
+
+
+    	}
+
+    	#gla {
+    		background-image: url("logos/GLA_Logo_Lg_FINAL.png");
+    		height: 75;
+    		width: 75;
+    		background-size: contain;
+    		display: inline-block;
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+
+    	#odi {
+    		background-image: url("logos/ODI-logo_colour.png");
+    		height: 75;
+    		width: 75;
+    		background-size: contain;
+    		background-repeat: no-repeat;
+    		background-position: center;
+    		display: inline-block;
+
+    	}
+
+    	#ukaid {
+    		background-image: url("logos/UKAID-4C.png");
+    		height: 75;
+    		width: 75;
+    		background-size: contain;
+    		background-repeat: no-repeat;
+    		background-position: center;
+    		display: inline-block;
+    	}
+
+    	#omidyar {
+    		background-image: url("logos/ON_Logo_Primary_CMYK.png");
+    		height: 75;
+    		width: 125;
+    		background-size: contain;
+    		background-repeat: no-repeat;
+    		background-position: center;
+    		display: inline-block;
+    	}
+
+    	#header {
+    		height: 75px;
+    		width: 1000;
+    		background-color: #690028;
+    	}
+
+    	#upper-tier {
+    		width: 975;
+    		height: 250px;
+    		padding-top: 15px;
+    		padding-left: 25px;
+    	}
+
+    	#lower-tier {
+    		background-color: #F0A483 !important;
+    		width: 975;
+    		height: 250px;
+    		padding-top: 15px;
+    		padding-left: 25px;
+    	}
+
+    	#footer {
+    		width: 1000px;
+    		height: 100px;
+    	}
+
+    	#documentation {
+    		width: 48%;
+    		height: 180;
+    		float: left;
+    		background-color: #F0A483 !important;
+
+    		
+
+    	}
+
+    	#chart-documentation {
+
+    	}
+
+    	#reasons {
+    		width: 48%;
+    		height: 180;
+    		
+    		float: right;
+    		background-color: #F0A483 !important;
+
+    	}
+
+    	#chart-reasons {
+
+
+    		color: white !important;
+    	}
+
+
+
+    	#description {
+    		background-color: #690028;
+    		color: white;
+    		font-size: 10;
+    		height:75;
+    		width: 450px;
+    		float: left;
+    		padding: 25px 25px 5px 25px;
+
+    	}
+
+    	#methodology {
+    		background-color: #BEBEAF;
+    		color: black;
+    		font-size: 10;
+    		height:75;
+    		width:450px;
+    		float: right;
+    		padding: 25px 25px 5px 25px;
+    	}
+
+    	 .financialprogressprojectlist {
+float:left;
+    width: 100%;
+    margin-bottom: 10px;
+}    .financialprogressprojectlist select {
+        font-family: 'Arial';
+        font-size: 20;
+        display: inline-block;
+        width: 100%;
+        cursor: pointer;
+        height:55;
+        outline: 0;
+        border: 0px solid #FFFFFF;
+        border-radius: 0px;
+        background: #FFFFFF;
+        color: #F0A483;
+
+    }
+        .financialprogressprojectlist select::-ms-expand {
+            display: none;
+        }
+        .financialprogressprojectlist select:hover,
+        .financialprogressprojectlist select:focus {
+            color: #FA5A14;
+            background: #FFFFFF;
+        }
+        .financialprogressprojectlist select:disabled {
+            color: #F0A483;
+            pointer-events: none;
+        }
+
+.financialprogressprojectlist select:hover ~ .financialprogressprojectlist_arrow,
+.financialprogressprojectlist select:focus ~ .sfinancialprogressprojectlist_arrow {
+    border-top-color: #FFFFFF;
+}
+.financialprogressprojectlist select:disabled ~ .financialprogressprojectlist_arrow {
+    border-top-color: #FFFFFF;
+}
+
+    </style>
   </head>
 
 
@@ -22,23 +408,73 @@
 <!-- establish structure -->
 
 <div id="header">
-	<div id="selector"></div>
-	<div id="logos"></div>
+	<div id="brand"></div>
+	<div id="selector">
+		<div id="financialprogressprojectlist" class="financialprogressprojectlist" ></div>
+	</div>
+	<div id="logos">
+		<div id="gla"></div>
+		<div id="odi"></div>
+		<div id="ukaid"></div>
+		<div id="omidyar"></div>
+	</div>
 </div>
 <div id="upper-tier">
-	<div class="ch-tenure" id="chart-tenure-insecurity">
+	<div id="tenure-pie">
+		<div class="chart-id-number-upper">01</div>
+		<div class="chart-id">Tenure insecurity</div>
+		<div class="ch-tenure" id="chart-tenure-insecurity"></div>
+		<div class="chart-key" style="margin-top: -150; float:right; margin-right: -140; " id="key-documentation">
+			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #690028"></div>Tenure Security</div><br>
+			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #FA5A14"></div>Tenure Insecurity</div><br>
+			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #BEBEAF"></div>Don't Know or Refused to Answer</div><br>
+		</div>
 	</div>
-	<div id="chart-tensure-detail">
+	<div id="tenure-detail">
+		<div class="chart-id-number-upper">03</div><div class="chart-id">Tenure insecurity in detail</div>
+		<div style="float:right">
+		<div class="labels-tenure-owners">
+			<div id="renters"></div>
+			<div id="rural"></div>
+			<div id="men"></div>
+		</div>
+		<div class="ch-owners-l" id="chart-tenure-owners-l"></div>
+		<div class="labels-tenure-owners">
+			<div id="owners"></div>
+			<div id="urban"></div>
+			<div id="women"></div>
+		</div>
+		<div class="ch-owners-r" id="chart-tenure-owners-r"></div>
 	</div>
+<div class="chart-key" style="margin-top: -40" id="key-documentation">
+			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #690028"></div>Tenure Security</div>
+			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #FA5A14"></div>Tenure Insecurity</div>
+			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #BEBEAF"></div>Don't Know or Refused to Answer</div>
+		</div>
+</div>
 </div>
 <div id="lower-tier">
-	<div class="ch-docs" id="chart-documentation">
+	<div id="documentation">
+		<div class="chart-id-number-lower">02</div>
+		<div class="chart-id">Documentation</div>
+		<div class="ch-docs" id="chart-documentation"></div>
+		<div class="chart-key" style="margin-top: -20" id="key-documentation">
+			<div class="chart-element"><div class="chart-key-example" style="background-color: #690028"></div>Formal Documents</div>
+			<div class="chart-element"><div class="chart-key-example" style="background-color: #FA5A14"></div>Informal Documents</div>
+			<div class="chart-element"><div class="chart-key-example" style="background-color: #BEBEAF"></div>No Documents</div>
+		</div>
 	</div>
-	<div class="ch-reasons" id="chart-reasons">
-		
+	<div id="Reasons">
+		<div class="chart-id-number-lower">04</div>
+		<div class="chart-id">Reasons for Insecurity</div>
+		<div class="ch-reasons" id="chart-reasons"></div>
 	</div>
 </div>
 <div id="footer">
+	<div id="description"><b>Property rights</b> are a cornerstone of economic development and social justice. One of the most fundamental ways of understanding the strength of property rights is through citizens’ perceptions of them. Prindex, an initiative of Global Land Alliance and Overseas Development Institute with support from DFID and Omidyar Network, is the first global  measurement of peoples’ perceptions of their property rights.</div>
+	<div id="methodology"><b>Methodology</b>	
+A nationally representative sample of 4,021 adults 18 years or older were asked about their perceptions and experiences with property rights and tenure security in Example between September and November 2018.  <br>
+For more information, see www.prindex.net |       @PrindexGlobal</div>
 	</div>
 
 <script>
@@ -77,7 +513,7 @@
     "% informal documents - FAMILY MEMBER OWNS manually rounded",
     "% formal documents - FAMILY MEMBER OWNS rounded", //15
 
-    "% insecure - OWNERS rounded",
+    "% insecure - OWNERS rounded", //16
     "% don't know or refused to answer - OWNERS manually rounded",
     "% secure - OWNERS rounded",
     "% insecure - RENTERS rounded",
@@ -94,16 +530,16 @@
     "% secure - WOMEN rounded",
     "% insecure - MEN rounded",
     "% don't know or refused to answer - MEN manually rounded",
-    "% secure - MEN rounded",
+    "% secure - MEN rounded", //33
 
-    "The owner may ask me to leave",//33
+    "The owner may ask me to leave",//34
     "The person paying rent may ask me to leave",
     "Disagreements with family or relatives",
     "Death of a household member",
     "Companies may seize",
     "Lack of money or other resources",
     "Government may seize",
-    "Issues with customary authorities"],//40
+    "Issues with customary authorities"],//41
 	["United States", 
 	"13%", "86%", "1%", "3%", "11%",
     "86%",
@@ -186,7 +622,7 @@
     "9%",
     "4%"
     ]];
-
+console.log("Tenure Pie");
 var chart_tenure_data = {};
 chart_tenure_data['labels'] = [];
 
@@ -201,7 +637,7 @@ for (var the_country = 1; the_country <3; the_country++){
 	for (var the_tenure = 1; the_tenure <= 3; the_tenure++) {
 		switch (the_tenure) {
 			case 1:
-			chart_tenure_data['labels'][1]="Tenure Inecurity";
+			chart_tenure_data['labels'][1]="Tenure Insecurity";
 			chart_tenure_data[the_country_name][1]=parseFloat(data_table[the_country][the_tenure]);
 			break;
  			case 2:
@@ -218,6 +654,7 @@ for (var the_country = 1; the_country <3; the_country++){
 }
 console.log(chart_tenure_data);
 
+console.log("Reasons");
 var chart_reasons_data = {};
 chart_reasons_data['labels'] = [];
 for (var the_country = 0; the_country <3; the_country++){
@@ -237,7 +674,18 @@ for (var the_country = 0; the_country <3; the_country++){
 	}
 }
 console.log(chart_reasons_data);
+var projectselecting = document.getElementById("financialprogressprojectlist");
+  var selectcontrol = document.createElement("select");
+  selectcontrol.id = "ProjectSelected";
+  projectselecting.appendChild(selectcontrol);
+  for (var current_project = 1; current_project < 3; current_project++) {
+  var option = document.createElement("option");
+  option.setAttribute("value", current_project);
+  option.text = data_table[current_project][0];
+  selectcontrol.appendChild(option);
+}
 
+console.log("Documentation");
 var chart_documentation_data = {};
 chart_documentation_data['labels'] = [];
 for (var the_country = 0; the_country <3; the_country++){
@@ -263,24 +711,31 @@ for (var the_country = 0; the_country <3; the_country++){
 			//		console.log("Type of Situation = 0");
 					break;
 				case 1 : //Total
-					type_of_situation = 3;
+					type_of_situation = 0;
+					chart_documentation_data.labels[type_of_situation] = 
+"Total"
 
 			//console.log("type of situation changed to "+type_of_situation);
 					break;
 
 				case 2 : //Owners
-					type_of_situation = 2;
+					type_of_situation = 1;
+					chart_documentation_data.labels[type_of_situation] = 
+"Owners"
 
 			//console.log("type of situation changed to "+type_of_situation);
 					break;
 				case 3 : //Renters
-					type_of_situation = 1;
+					type_of_situation = 2;
+					chart_documentation_data.labels[type_of_situation] = 
+"Renters"
 
 			//console.log("type of situation changed to "+type_of_situation);
 					break;
 				case 4 : //Family Members
-					type_of_situation = 0;
-
+					type_of_situation = 3;
+					chart_documentation_data.labels[type_of_situation] = 
+"Family Member Owns Property"
 			//console.log("type of situation changed to "+type_of_situation);
 					break;
 			}
@@ -316,28 +771,96 @@ for (var the_country = 0; the_country <3; the_country++){
 			*/
 		}
 	}
-}
+};
 console.log(chart_documentation_data);
 
-new Chartist.Pie('.ch-tenure', {
+console.log("Insecurity");
+var chart_insecurity_data_l = {};
+var chart_insecurity_data_r = {};
+//chart_insecurity_data['labels'] = [];
+for (var the_country = 0; the_country <3; the_country++){
+	 if (the_country != 0) {
+	 	console.log(data_table);
+	 	var the_country_name = data_table[the_country][0];
+	 	console.log("Beginning "+the_country_name);
+	 	chart_insecurity_data_l[the_country_name]={};
+	 	chart_insecurity_data_l[the_country_name]['secure']=[];
+	 	chart_insecurity_data_l[the_country_name]['insecure']=[];
+	 	chart_insecurity_data_l[the_country_name]['unknown']=[];
+	 	chart_insecurity_data_r[the_country_name]={};
+	 	chart_insecurity_data_r[the_country_name]['secure']=[];
+	 	chart_insecurity_data_r[the_country_name]['insecure']=[];
+	 	chart_insecurity_data_r[the_country_name]['unknown']=[];
+	 };
+	 //console.log(chart_insecurity_data_l);
+	for (var the_insecure = 16; the_insecure < 34; the_insecure++) {
+		if (the_country == 0) {
+			//console.log("the_country equalled zero");
+
+		} else {
+			//console.log("the_country did not equal zero");
+			var who_are_they = (((the_insecure-16)-((the_insecure-16)%3))/3);
+			var how_insecure = "Error";
+			if ((who_are_they%2)==0) {
+				switch ((the_insecure-16)%3) {
+					case 0 : how_insecure = 'insecure'; break;
+					case 1 : how_insecure = 'unknown'; break;
+					case 2 : how_insecure = 'secure'; break;
+				};
+			//console.log(parseFloat(data_table[the_country][the_insecure]));
+			//console.log(who_are_they+" "+how_insecure);
+			//console.log("Adding: "+parseFloat(data_table[the_country][the_insecure])+" to "+who_are_they+" "+how_insecure);
+				console.log("The Insecure"+the_insecure+"How Insecure "+how_insecure+" who_are_they "+who_are_they);
+				chart_insecurity_data_l[the_country_name][how_insecure][who_are_they/2]=parseFloat(data_table[the_country][the_insecure]);
+			} else {
+				switch ((the_insecure-16)%3) {
+					case 0 : how_insecure = 'insecure'; break;
+					case 1 : how_insecure = 'unknown'; break;
+					case 2 : how_insecure = 'secure'; break;
+				};
+			//console.log(parseFloat(data_table[the_country][the_insecure]));
+			//console.log(who_are_they+" "+how_insecure);
+			//console.log("Adding: "+parseFloat(data_table[the_country][the_insecure])+" to "+who_are_they+" "+how_insecure);
+				console.log("The Insecure"+the_insecure+"How Insecure "+how_insecure+" who_are_they "+who_are_they);
+				chart_insecurity_data_r[the_country_name][how_insecure][(who_are_they-1)/2]=parseFloat(data_table[the_country][the_insecure]);
+			}
+
+			
+
+
+		}
+	};
+
+	console.log("Final Insecurity Components");
+	console.log(chart_insecurity_data_l);
+	console.log(chart_insecurity_data_r);
+};
+
+
+var selected_country="United States";
+
+
+
+var c_t = new Chartist.Pie('.ch-tenure', {
 //  labels:
 //  chart_tenure_data['labels'],
   series: 
-  	chart_tenure_data['United States']
+  	chart_tenure_data[selected_country]
   	
 }, {
   donut: true,
-  donutWidth: 60,
+  donutWidth: 50,
   donutSolid: true,
+
  startAngle: 0,
   showLabel: true
 });
 
-	new Chartist.Bar('.ch-reasons', {
+var c_r = new Chartist.Bar('.ch-reasons', {
   labels: 
   	chart_reasons_data['labels'],
   series: [
-    chart_reasons_data['United States']
+    chart_reasons_data[selected_country]
 
     ]
 }, {
@@ -345,33 +868,142 @@ new Chartist.Pie('.ch-tenure', {
   reverseData: true,
   horizontalBars: true,
   axisY: {
-    offset: 70
-  }
+  showGrid : false,
+    offset: 250
+  },
+  axisX: {
+  	type: Chartist.AutoScaleAxis,
+  	onlyInteger: true,
+  	scaleMinSpace: 50,
+  	showGrid : false,
+}
 });
 
 
-new Chartist.Bar('.ch-docs', {
+var c_d = new Chartist.Bar('.ch-docs', {
   labels: chart_documentation_data.labels,
   series: [
-  	chart_documentation_data[the_country_name].formal,
-  	chart_documentation_data[the_country_name].informal,
-  	chart_documentation_data[the_country_name].nodocs
+  	chart_documentation_data[selected_country].formal,
+  	chart_documentation_data[selected_country].informal,
+  	chart_documentation_data[selected_country].nodocs
   ]
 }, {
   stackBars: true,
+chartPadding: {  bottom: 0 },
     horizontalBars: true,
-  axisY: {
-    labelInterpolationFnc: function(value) {
-      return (value) + '%';
-    }
+      axisY: {
+  showGrid : false,
+  showLabel: true,
+  offset: 100
+  },
+  axisX: {
+  	showGrid : false,
+  	showLabel: false,
+  	
   }
 }).on('draw', function(data) {
   if(data.type === 'bar') {
     data.element.attr({
-      style: 'stroke-width: 30px'
+      style: 'stroke-width: 25px'
     });
   }
 });
+
+	//	<div class="ch-owners" id="chart-tenure-owners"><BR>
+
+var c_o_l = new Chartist.Bar('.ch-owners-l', {
+	series: [
+	chart_insecurity_data_l[selected_country]["secure"],
+	chart_insecurity_data_l[selected_country]["insecure"],
+	chart_insecurity_data_l[selected_country]["unknown"],
+	
+  ]
+}, {
+  stackBars: true,
+  chartPadding: {  right: 0, left: 0 },
+    horizontalBars: true,
+        axisY: {
+  showGrid : false,
+  showLabel: false,
+  },
+  axisX: {
+  	showGrid : false,
+  	showLabel: false,
+  	
+  }
+}).on('draw', function(data) {
+  if(data.type === 'bar') {
+    data.element.attr({
+      style: 'stroke-width: 25px'
+    });
+  }
+});
+
+var c_o_r = new Chartist.Bar('.ch-owners-r', {
+	series: [
+	chart_insecurity_data_r[selected_country]["secure"],
+	chart_insecurity_data_r[selected_country]["insecure"],
+	chart_insecurity_data_r[selected_country]["unknown"],
+	
+  ]
+}, {
+  stackBars: true,
+  chartPadding: {  right: 0, left: 0 },
+    horizontalBars: true,
+        axisY: {
+  showGrid : false,
+  showLabel: false,
+  },
+  axisX: {
+  	showGrid : false,
+  	showLabel: false,
+  	
+  }
+}).on('draw', function(data) {
+  if(data.type === 'bar') {
+    data.element.attr({
+      style: 'stroke-width: 25px'
+    });
+  }
+});
+
+$("#financialprogressprojectlist").change(function() {
+    var selectedproject = document.getElementById("ProjectSelected");
+    selected_country = data_table[selectedproject.selectedIndex+1][0];
+    console.log("Select New Project: "+selected_country);
+    c_d.update({
+  
+  labels: chart_documentation_data.labels,
+  series: [
+  	chart_documentation_data[selected_country].formal,
+  	chart_documentation_data[selected_country].informal,
+  	chart_documentation_data[selected_country].nodocs
+  ]
+});
+    c_r.update({ labels: 
+  	chart_reasons_data['labels'], series: [
+    chart_reasons_data[selected_country]
+
+    ]});
+    c_t.update({series: 
+  	chart_tenure_data[selected_country]
+  	
+});
+    c_o_r.update({ series: [
+	chart_insecurity_data_r[selected_country]["secure"],
+	chart_insecurity_data_r[selected_country]["insecure"],
+	chart_insecurity_data_r[selected_country]["unknown"],
+	
+  ]});
+    c_o_l.update({
+	series: [
+	chart_insecurity_data_l[selected_country]["secure"],
+	chart_insecurity_data_l[selected_country]["insecure"],
+	chart_insecurity_data_l[selected_country]["unknown"],
+	
+  ]});
+});
+
 
 </script>
 </html>
