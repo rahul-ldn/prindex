@@ -1,0 +1,1550 @@
+
+<html>
+  <head>
+  <!--  <link rel="stylesheet" href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.1.1/papaparse.min.js"></script> -->
+    <link rel="stylesheet" href="chartist.min.css">
+    <script src="chartist.min.js"></script>
+        <script src="jquery-2.1.1.min.js"></script>
+        <script src="chartist-bar-labels.js"></script>
+        <script src="chartist-plugin-fill-donut.js"></script>
+        <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Rubik">
+   
+    <style type="text/css">
+    	body {
+    		font-family: 'Rubik', sans-serif;
+    	}
+
+        .general {
+
+        }
+
+      
+
+        .pages {
+            height: 735px;
+            width: 550px;
+        }
+        #slogan {
+            float: right;
+            font-size: 18;
+            color: white;
+            padding-top: 30px;
+            padding-right: 15px;
+        }
+
+    	.chart-id-number-upper {
+    		color: #FA5A14 !important;
+    		text-transform: uppercase;
+    		display: inline-block;
+            margin-right:5px;
+    	}
+
+    	.chart-id-number-lower {
+    		color: white !important;
+    		text-transform: uppercase;
+    		display: inline-block;
+            margin-right:5px;
+    	}
+
+    	.chart-id {
+    		color: black;
+    		text-transform: uppercase;
+    		display: inline-block;
+    	}
+
+    	.ct-slice-donut-solid {
+    		stroke: #F0A483;
+    		stroke-width: 4px !important;
+    	}
+    	.ct-series-a .ct-slice-donut-solid {
+    		fill: #690028 !important;
+    	}
+    	.ct-series-b .ct-slice-donut-solid {
+    		fill: #FA5A14 !important;
+    		
+    	}
+    	.ct-series-c .ct-slice-donut-solid {
+    		fill: #BEBEAF !important;
+    		
+    	}
+
+    	.ct-series-a .ct-bar {
+    		stroke: #690028 !important;
+    		stroke-width: 20px;
+
+    	}
+    	.ct-series-b .ct-bar {
+    		stroke: #FA5A14 !important;
+    		stroke-width: 20px;
+
+    		
+    	}
+    	.ct-series-c .ct-bar {
+    		stroke: #BEBEAF !important;
+    		stroke-width: 20px;
+
+    		
+    	}
+
+    	.ct-chart-donut .ct-label {
+    		font-size: 20;
+    		color: white !important;
+    		fill: white;
+    	}
+
+    	.ch-reasons .ct-series-a .ct-bar  {
+    		stroke: #FA5A14 !important;
+    		stroke-width: 15px;
+    		color: white;
+    		
+    	}
+
+        .ct-vertical {
+            height: 23px !important;
+            font-size: 9px;
+            vertical-align: bottom
+        }
+
+
+    	.ch-reasons .ct-labels {
+    		color: white !important;
+    		height: 23px !important;
+    		vertical-align: -10px;
+            font-size: 7 !important;
+    		
+    	}
+
+    	.ch-reasons .ct-start {
+    		color: black;
+    		height: 19px !important;
+    		margin: 0px 0px 0px 0px;
+    		padding: 0px 0px 0px 0px;
+    	}
+    	.ch-docs .ct-label {
+    		color: black;
+    		
+    	}
+    	#chart-tenure-allprop {
+            display: inline-block;
+            width: 220;
+            margin-left: -10;
+            margin-right: 25;
+
+   
+    		
+    		height: 200;
+    	}
+        #chart-tenure-main {
+                 
+        display: inline-block;
+            margin-left: 25;
+            margin-right: 0;
+            width: 220;
+            height: 200;
+        }
+		.chart-key {
+			float:left;
+			margin-left: 40
+		}
+
+		.chart-element { 
+			display: inline-block;
+			font-size: 10;
+			color: white; }
+
+    	.chart-key-example {
+    		width: 10;
+    		height: 10;
+    		background-color: white;
+    		display: inline-block; 
+    		margin-right: 5;
+    		margin-left: 10;
+    	}
+
+    	#tenure-pie {
+    		height:250;
+    		float:left;
+    	}
+
+        .ct-fill-donut-label {
+            text-align: center !important;
+        }
+
+    	#ch-tenure {
+
+    	}
+    	#tenure-detail {
+    		height: 200;
+    		float: left;
+    	}
+
+
+
+    	.chart-description-white {
+    		font-size: 10;
+    		color: #black;
+            display: inline-block;
+            margin-left: 15px;
+                        margin-top: 5px;
+
+            vertical-align: top;
+    	}
+
+    	.chart-description-colour {
+    		font-size: 10;
+    		color: white;
+            display: inline-block;
+            margin-left: 15px;
+            margin-top: 5px;
+            vertical-align: top;
+    		
+    	}
+
+    	.ch-owners-labels {
+    		font-size: 9;
+    		stroke: white !important;
+    	}
+
+    	.ch-documentation-labels {
+    		font-size: 10;
+    		stroke: white !important;
+    	}
+    	.ch-reasons-labels {
+    		font-size: 10;
+    		stroke: white !important;
+            font-weight: 100;
+    	}
+
+    	.labels-tenure-owners {
+    		vertical-align: top;
+    		width: 25px;
+    		display: inline-block;
+
+    		padding-top: 20px;
+    	}
+
+    	.owners-label-text {
+    		font-size: 10;
+    		color: #BEBEAF;
+    		margin-bottom: 15;
+    		
+    	}
+
+    	#owners {
+    		background-image: url("icons/Tenure-type_owner.svg");
+    		height: 25;
+    		width: 25;
+    		background-size: contain;
+
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+    	#renters{
+    		background-image: url("icons/Tenure-type_renter.svg");
+    		height: 25;
+    		width: 25;
+    		background-size: contain;
+    	
+
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+
+    	#urban{
+    		background-image: url("icons/Location_urban.svg");
+    		height: 25;
+    		width: 25;
+    		background-size: contain;
+    	
+
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+    	#rural{
+    		background-image: url("icons/Location_rural.svg");
+    		height: 25;
+    		width: 25;
+    		background-size: contain;
+    	
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+    	#women {
+    		background-image: url("icons/Gender_female.svg");
+    		height: 25;
+    		width: 25;
+    		background-size: contain;
+    	
+
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+    	#men {
+    		background-image: url("icons/Gender_male.svg");
+    		height: 25;
+    		width: 25;
+    		background-size: contain;
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+
+    	#chart-tenure-owners-l {
+    		
+    		display: inline-block;
+    		width: 210;
+    		margin-left: -25;
+    		margin-right: 20;
+
+    	}
+    	#chart-tenure-owners-r {
+    	display: inline-block;
+    		margin-left: -25;
+    		margin-right: 25;
+    		width: 210;
+    	}
+
+    	#brand {
+    		background-image: url("logos/Prindex_logo_horizontal_orange-white.svg");
+    		height: 75;
+    		width: 175;
+    		background-size: contain;
+    		background-repeat: no-repeat;
+
+    		display: inline-block;
+
+    	}
+
+    	#selector {
+    		width: 200;
+    		padding-left: 25;
+
+    		display: inline-block;
+
+    	}
+
+    	#logos {
+            color: white;
+            font-size: 10;
+            height:65;
+            width: 475px;
+            display: inline-block;
+            padding: 10px 25px 0px 25px;
+            background-color: #690028;
+
+
+
+    	}
+
+    	#gla {
+    		background-image: url("logos/GLA_Logo_Lg_FINAL.png");
+    		height: 55;
+    		width: 75;
+    		background-size: contain;
+    		display: inline-block;
+    		background-repeat: no-repeat;
+    		background-position: top;
+            margin-bottom: 5px;
+    	}
+
+    	#odi {
+    		background-image: url("logos/ODI-logo_colour.png");
+            height: 60;
+            width: 80;
+    		background-size: contain;
+    		background-repeat: no-repeat;
+    		background-position: top;
+    		display: inline-block;
+
+    	}
+
+    	#ukaid {
+    		background-image: url("logos/UKAID-4C.png");
+            height: 60;
+            width: 80;
+    		background-size: contain;
+    		background-repeat: no-repeat;
+    		background-position: top;
+    		display: inline-block;
+    	}
+
+    	#omidyar {
+    		background-image: url("logos/ON_Logo_Primary_CMYK.png");
+    		height: 55;
+    		width: 125;
+    		background-size: contain;
+    		background-repeat: no-repeat;
+    		background-position: top;
+    		display: inline-block;
+    	}
+
+    	#header {
+    		height: 75px;
+    		width: 525;
+    		background-color: #690028;
+    	}
+
+    	.upper-tier {
+    		width: 500;
+    		height: 240px;
+    		padding-top: 15px;
+    		padding-left: 25px;
+    	}
+
+    	.lower-tier {
+    		background-color: #F0A483 !important;
+    		width: 500;
+    		height: 230px;
+    		padding-top: 15px;
+    		padding-left: 25px;
+    	}
+
+    	#footer {
+    		width: 1000px;
+            height:220px;
+    	}
+
+    	#documentation {
+    		height: 180;
+    		float: left;
+    		
+
+    		
+
+    	}
+
+
+
+    	#chart-documentation {
+
+    	}
+
+
+
+    	#reasons {
+    		height: 220;
+            width: 500;
+    		
+    		float: left;
+    	
+    	}
+
+    	#chart-reasons {
+
+            margin-top: -20;
+    		color: white !important;
+    	}
+
+        #introduction {
+            background-color: #BEBEAF;
+            width: 500;
+            color: black;
+            font-size: 10;
+            height:40px;
+            width: 475px;
+            float: inline-block;
+            padding: 13px 25px 0px 25px;
+
+        }
+
+    	#description {
+    		background-color: #690028;
+    		color: white;
+    		font-size: 10;
+    		height:65;
+    		width: 490px;
+    		float: left;
+    		padding: 20px 15px 0px 20px;
+
+    	}
+
+    	#methodology {
+    		background-color: #BEBEAF;
+    		color: black;
+    		font-size: 10;
+    		height:55;
+    		width:475px;
+    		float: left;
+    		padding: 15px 25px 10px 25px;
+    	}
+
+    	.country_list {
+			float:left;
+    		width: 100%;
+    		margin-bottom: 10px;
+		}    
+
+		.country_list select {
+        	font-family: 'Rubik';
+        	font-size: 20;
+        	display: inline-block;
+        	width: 100%;
+        	cursor: pointer;
+        	height:55;
+        	outline: 0;
+        	border: 0px solid #FFFFFF;
+        	border-radius: 0px;
+        	background: #FFFFFF;
+        	color: #F0A483;
+
+    	}
+        .country_list select::-ms-expand {
+            display: none;
+        }
+        .country_list select:hover,
+        .country_list select:focus {
+            color: #FA5A14;
+            background: #FFFFFF;
+        }
+        .country_list select:disabled {
+            color: #F0A483;
+            pointer-events: none;
+        }
+
+.	country_list select:hover ~ .country_list_arrow,
+.country_list select:focus ~ .scountry_list_arrow {
+    border-top-color: #FFFFFF;
+}
+.country_list select:disabled ~ .country_list_arrow {
+    border-top-color: #FFFFFF;
+}
+
+    </style>
+  </head>
+
+
+
+<!-- fetch text
+	Dropdown
+	Headers
+	Legend
+	Labels
+	Fooder - explanation
+		- methodology
+	-->
+
+<!-- establish structure -->
+<div id="pageone" class="pages">
+<div id="header">
+	<div id="brand"></div><div id="slogan">Securing Property Rights: <span id="survey_header_pg1">COUNTRY</span></div>
+	<!--<div id="selector">
+		<div id="country_list" class="country_list" ></div>
+	</div>-->	
+</div>
+<div class="general" id="introduction">
+        <b>Property rights</b> are a cornerstone of economic development and social justice. One fundamental way of understanding their strength is to ask people how secure they feel in these rights.
+    
+</div>
+<div class="lower-tier" style="padding-bottom: 5px; height: 260px">
+	<div id="tenure-pie">
+		<div class="chart-id-number-lower">1</div>
+		<div class="chart-id">Levels of Insecurity</div><div class="chart-description-colour" style="margin-top: -2px;">The percentage of the adult population<BR>that feels insecure in their property rights</BR></BR></div>
+		<div class="ch-allprop" id="chart-tenure-allprop"></div>
+        <div class="ch-main" id="chart-tenure-main"></div>
+        <div class="chart-key" style="margin-top: 0; margin-left: 125px" id="key-documentation">
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #690028"></div>Secure</div>
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #FA5A14"></div>Insecure</div>
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #BEBEAF"></div>No Answer</div>
+        </div>
+<!--		<div class="chart-key" style="margin-top: -150; float:right; margin-right: -30;" id="key-documentation">
+			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #690028"></div>Secure</div><br>
+			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #FA5A14"></div>Insecure</div><br>
+			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #BEBEAF"></div>No Answer</div>
+		</div>-->
+	</div>
+</div>
+<div class="upper-tier" style="height: 230px;">
+	<div id="tenure-detail">
+		<div class="chart-id-number-upper">2</div>
+		<div class="chart-id">Who Feels Insecure</div><div class="chart-description-white">Insecurity by gender, population density, or tenure type<BR></div>
+		<div style="float:left">
+		<div class="labels-tenure-owners">
+			<div id="renters"></div>
+			<div class="owners-label-text">Renters</div>
+			<div id="rural"></div>
+			<div class="owners-label-text">Rural</div>
+			<div id="men"></div>
+			<div class="owners-label-text" style="margin-bottom: 50">Men</div>
+		</div>
+		<div class="ch-owners-l" id="chart-tenure-owners-l"></div>
+		<div class="labels-tenure-owners">
+			<div id="owners"></div>
+			<div class="owners-label-text">Owners</div>
+			<div id="urban"></div>
+			<div class="owners-label-text">Urban</div>
+			<div id="women"></div>
+			<div class="owners-label-text"  style="margin-bottom: 50">Women</div>
+		</div>
+		<div class="ch-owners-r" id="chart-tenure-owners-r"></div>
+	</div>
+<div class="chart-key" style="margin-top: -45; margin-left: 120px" id="key-documentation">
+			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #690028"></div>Secure</div>
+			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #FA5A14"></div>Insecure</div>
+			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #BEBEAF"></div>No Answer</div>
+		</div>
+</div>
+</div>
+
+<div id="footer" style="height: 75px">
+    <div id="description"><b>Prindex</b> is a global survey measuring perceptions of land and property rights. By developing a deeper understanding of how they work in practice, Prindex is helping build a world where everyone feels secure in their right to their home and land.  </div>
+</div>
+</div>
+<div style="height: 10px"></div>
+
+<div id="pagetwo" class="pages">
+<div id="header">
+    <div id="brand"></div><div id="slogan">Securing Property Rights: <span id="survey_header_pg2">COUNTRY</span> </div>
+    <!--<div id="selector">
+        <div id="country_list" class="country_list" ></div>
+    </div>-->   
+</div>
+<div class="lower-tier" style="height: 190px; padding-top: 15px; padding-bottom: 15px;">
+    <div id="Reasons">
+        <div class="chart-id-number-lower">3</div>
+        <div class="chart-id">Why people feel insecure</div><div class="chart-description-colour">The reasons cited by those who feel insecure.</BR></div>
+        <div class="ch-reasons" id="chart-reasons"></div>
+    </div>
+	
+</div>
+<div class="upper-tier" style="height: 230px;">
+    <div id="documentation">
+        <div class="chart-id-number-upper">4</div>
+        <div class="chart-id">Documentation</div><div class="chart-description-white" style="margin-top: -2px;">Types of property documentation held by people,<BR>broken down by tenure arrangements</BR></div>
+        <div class="ch-docs" id="chart-documentation"></div>
+        <div class="chart-key" style="margin-top: -20; margin-right: -20px" id="key-documentation">
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #690028"></div>Formal Documents</div>
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #FA5A14"></div>Informal Documents</div>
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #BEBEAF"></div>No Documents</div>
+        </div>
+    </div>
+</div>
+<div id="footer">
+
+    <div id="methodology"><b>Methodology</b>    
+A nationally representative sample of <span id="survey_sample">SAMPLE</span> adults 18 years or older in in <span id="survey_country_p1">COUNTRY</span> were asked about their perceptions and experiences with property rights and tenure security in <span id="survey_year">YEAR</span>.
+
+For the full list of which documents are considered as Formal Documents and Informal Documents in <span id="survey_country_p2">COUNTRY</span> please visit www.prindex.net/documentation</div>
+<div id="logos">
+        <div id="gla"></div>
+        <div id="odi"></div>
+        <div id="ukaid"></div>
+        <div id="omidyar"></div>
+    </div>
+	<div id="description" style="padding-top: 0px !important; width: 492px; padding-right: 15px; padding-left:18px;height: 45px"><b>Prindex</b>, an initiative of Global Land Alliance and Overseas Development Institute with support from DFID and Omidyar Network, is the first global measurement of peoples' perceptions of their property rights. </div>
+	
+	</div>
+</div>
+<script>
+	/*Papa.parse("file", {
+		download: true,
+		header: true,
+		complete: function(results) {
+			console.log(results);
+			$.each(results.data, function (ib, el) {
+				if (ib != 0) {
+  //Name  Acronym Affiliation City  Country Website Principal Principal's Representative  URL Logo Link Location  Latitude  Longitude
+  					$.each(el, function(j, cell) {
+						}
+				}
+		}
+	}
+	});*/
+
+	var data_table = [
+	["Country", 
+
+	"% insecure - All Property rounded", //1
+	"% secure - All Property rounded",
+    "% don't know or refused to answer - All Property manually rounded", //3
+    "% insecure - Main Residence rounded", //1
+    "% secure - Main Residence rounded",
+    "% don't know or refused to answer - Main Residence manually rounded",
+    "% no documents - TOTAL rounded", //4
+    "% informal documents - TOTAL manually rounded",
+    "% formal documents - TOTAL rounded",
+    "% no documents - OWNERS rounded",
+    "% informal documents - OWNERS manually rounded",
+    "% formal documents - OWNERS rounded",
+    "% no documents - RENTERS rounded",
+    "% informal documents - RENTERS manually rounded",
+    "% formal documents - RENTERS rounded",
+    "% no documents - FAMILY MEMBER OWNS rounded",
+    "% informal documents - FAMILY MEMBER OWNS manually rounded",
+    "% formal documents - FAMILY MEMBER OWNS rounded", //15
+
+    "% insecure - OWNERS rounded", //16
+    "% don't know or refused to answer - OWNERS manually rounded",
+    "% secure - OWNERS rounded",
+    "% insecure - RENTERS rounded",
+    "% don't know or refused to answer - RENTERS manually rounded",
+    "% secure - RENTERS rounded",
+    "% insecure - URBAN rounded",
+    "% don't know or refused to answer - URBAN manually rounded",
+    "% secure - URBAN rounded",
+    "% insecure - RURAL rounded",
+    "% don't know or refused to answer - RURAL manually rounded",
+    "% secure - RURAL rounded",
+    "% insecure - WOMEN rounded",
+    "% don't know or refused to answer - WOMEN manually rounded",
+    "% secure - WOMEN rounded",
+    "% insecure - MEN rounded",
+    "% don't know or refused to answer - MEN manually rounded",
+    "% secure - MEN rounded", //33
+    "The owner or person on the lease may ask me to leave",
+    "Disagreements with family or relatives",
+    "Death of a household member",
+    "Companies may seize",
+    "Lack of money or other resources",
+    "Government may seize",
+    "Issues with customary authorities"
+    ],//41
+    ["Netherlands",
+    "10%",
+    "90%",
+    "0%",
+    "8%",
+    "91%",
+    "1%",
+    "3%",
+    "7%",
+    "90%",
+    "1%",
+    "1%",
+    "98%",
+    "2%",
+    "10%",
+    "88%",
+    "11%",
+    "11%",
+    "78%",
+    "5%",
+    "0%",
+    "95%",
+    "11%",
+    "0%",
+    "89%",
+    "9%",
+    "0%",
+    "91%",
+    "5%",
+    "0%",
+    "95%",
+    "8%",
+    "0%",
+    "92%",
+    "9%",
+    "0%",
+    "91%",
+    "52%",
+    "27%",
+    "14%",
+    "14%",
+    "31%",
+    "15%",
+    "This question was not asked",
+    "1013",
+    "2019"
+    ],
+    ["Greece",
+    "16%",
+    "80%",
+    "4%",
+    "15%",
+    "81%",
+    "4%",
+    "3%",
+    "2%",
+    "95%",
+    "0%",
+    "1%",
+    "99%",
+    "2%",
+    "2%",
+    "96%",
+    "6%",
+    "7%",
+    "87%",
+    "3%",
+    "1%",
+    "96%",
+    "48%",
+    "7%",
+    "45%",
+    "16%",
+    "3%",
+    "81%",
+    "9%",
+    "0%",
+    "91%",
+    "18%",
+    "5%",
+    "77%",
+    "13%",
+    "1%",
+    "86%",
+    "87%",
+    "12%",
+    "7%",
+    "9%",
+    "56%",
+    "11%",
+    "This question was not asked",
+    "1069",
+    "2019"
+    ],
+    ["Brazil",
+    "23%",
+    "74%",
+    "3%",
+    "22%",
+    "75%",
+    "3%",
+    "13%",
+    "14%",
+    "73%",
+    "6%",
+    "13%",
+    "81%",
+    "27%",
+    "14%",
+    "59%",
+    "10%",
+    "15%",
+    "75%",
+    "12%",
+    "2%",
+    "86%",
+    "36%",
+    "4%",
+    "60%",
+    "22%",
+    "2%",
+    "76%",
+    "24%",
+    "4%",
+    "72%",
+    "22%",
+    "3%",
+    "75%",
+    "22%",
+    "3%",
+    "75%",
+    "71%",
+    "29%",
+    "22%",
+    "5%",
+    "31%",
+    "6%",
+    "1%",
+    "1030",
+    "2019"],
+    ["Rwanda",
+    "8%",
+    "89%",
+    "3%",
+    "7%",
+    "90%",
+    "3%",
+    "20%",
+    "2%",
+    "78%",
+    "12%",
+    "2%",
+    "86%",
+    "26%",
+    "2%",
+    "72%",
+    "22%",
+    "2%",
+    "76%",
+    "3%",
+    "1%",
+    "96%",
+    "14%",
+    "4%",
+    "82%",
+    "10%",
+    "5%",
+    "85%",
+    "6%",
+    "3%",
+    "91%",
+    "8%",
+    "4%",
+    "88%",
+    "5%",
+    "3%",
+    "92%",
+    "38%",
+    "13%",
+    "3%",
+    "9%",
+    "22%",
+    "28%",
+    "2%",
+    "968",
+    "2018"
+    ]
+    ];
+
+var reason_insert = 37;
+var doc_insert = 7;
+var demo_insert = 19;
+var selected_country_index = 4;
+var the_sample = data_table[selected_country_index][data_table[selected_country_index].length -2];
+var the_year = data_table[selected_country_index][data_table[selected_country_index].length -1];
+var selected_country=data_table[selected_country_index][0];
+
+console.log("Year: "+the_year+" Sample: "+the_sample);
+
+
+document.getElementById('survey_sample').innerHTML = the_sample;  
+document.getElementById('survey_year').innerHTML = the_year;
+document.getElementById('survey_country_p1').innerHTML = selected_country;
+document.getElementById('survey_country_p2').innerHTML = selected_country;
+document.getElementById('survey_header_pg1').innerHTML = selected_country;
+document.getElementById('survey_header_pg2').innerHTML = selected_country;
+
+
+console.log("SECTION ONE: Perceptions");
+var chart_main_data = {};
+var chart_allprop_data = {};
+chart_main_data['labels'] = [];
+chart_allprop_data['labels'] = [];
+
+/*
+	"% insecure - TOTAL rounded", //1
+	"% secure - TOTAL rounded",
+    "% don't know or refused to answer - TOTAL manually rounded", */
+
+for (var the_country = 1; the_country < data_table.length; the_country++){
+	 	var the_country_name = data_table[the_country][0];
+	 	chart_allprop_data[the_country_name]=[];
+	for (var the_tenure = 1; the_tenure <= 3; the_tenure++) {
+		switch (the_tenure) {
+			case 1:
+			chart_allprop_data['labels'][1]="Tenure Insecurity";
+			chart_allprop_data[the_country_name][1]=parseFloat(data_table[the_country][the_tenure]);
+			break;
+ 			case 2:
+			chart_allprop_data.labels[0]="Tenure Security";
+			chart_allprop_data[the_country_name][0]=parseFloat(data_table[the_country][the_tenure]);
+			break;
+			case 3:
+			chart_allprop_data.labels[2]="Don't Know or Refused to Answer";
+			chart_allprop_data[the_country_name][2]=parseFloat(data_table[the_country][the_tenure]);
+			break;
+
+		}
+	}
+}
+console.log(chart_allprop_data);
+
+for (var the_country = 1; the_country <data_table.length; the_country++){
+        var the_country_name = data_table[the_country][0];
+        chart_main_data[the_country_name]=[];
+    for (var the_tenure = 4; the_tenure <= 6; the_tenure++) {
+        switch (the_tenure) {
+            case 4:
+            chart_main_data['labels'][1]="Tenure Insecurity";
+            chart_main_data[the_country_name][1]=parseFloat(data_table[the_country][the_tenure]);
+            break;
+            case 5:
+            chart_main_data.labels[0]="Tenure Security";
+            chart_main_data[the_country_name][0]=parseFloat(data_table[the_country][the_tenure]);
+            break;
+            case 6:
+            chart_main_data.labels[2]="Don't Know or Refused to Answer";
+            chart_main_data[the_country_name][2]=parseFloat(data_table[the_country][the_tenure]);
+            break;
+
+        }
+    }
+}
+console.log(chart_main_data);
+
+console.log("SECTION THREE: Why/Reasons");
+var chart_reasons_data = {};
+chart_reasons_data['labels'] = {};
+chart_reasons_data['labels']['template']=[];
+for (var the_country = 0; the_country <data_table.length; the_country++){
+	 if (the_country != 0) {
+	 	var the_country_name = data_table[the_country][0];
+	 	chart_reasons_data[the_country_name]=[];
+        var label_template = Array.from(chart_reasons_data['labels'].template);
+        console.log("Copy of template");
+        console.log(label_template);
+        chart_reasons_data['labels'][the_country_name]=label_template;
+	 };
+	for (var the_reason = reason_insert; the_reason < (reason_insert+7); the_reason++) {
+		if (the_country == 0) {
+			chart_reasons_data['labels'].template[the_reason-reason_insert] = data_table[the_country][the_reason];
+            console.log("Adding reason labels: "+chart_reasons_data['labels'].template[the_reason-reason_insert]);
+		} else {
+			if (data_table[the_country][the_reason] == "This question was not asked") {
+				data_table[the_country][the_reason] = 0; //Need to set up alternative text 
+                console.log(the_reason+": Not Found "+data_table[the_country][the_reason]);
+			} else {
+                console.log("Present data: "+data_table[the_country][the_reason]);
+            };
+			var new_datum = parseFloat(data_table[the_country][the_reason]);
+			if (new_datum == 0) {
+                new_datum = 0.00001;
+                console.log(the_reason+": Not Found "+new_datum);
+            };
+
+			chart_reasons_data[the_country_name][the_reason-reason_insert] = new_datum;
+			console.log("Reason Data: "+new_datum);
+		}
+
+
+	}//end array construction
+    if (the_country != 0) {
+        var list = [];
+for (var j = 0; j < chart_reasons_data[the_country_name].length; j++) 
+    list.push({'name': chart_reasons_data[the_country_name][j], 'age': chart_reasons_data.labels[the_country_name][j]});
+
+//2) sort:
+list.sort(function(a, b) {
+    return ((a.name > b.name) ? -1 : ((a.name == b.name) ? 0 : 1));
+    //Sort could be modified to, for example, sort on the age 
+    // if the name is the same.
+});
+console.log("Intial List");
+console.log(list);
+//3) separate them back out:
+chart_reasons_data[the_country_name][0] = 0;
+console.log(chart_reasons_data[the_country_name])
+    chart_reasons_data.labels[the_country_name][0] = " ";
+    console.log(chart_reasons_data.labels[the_country_name]);
+    console.log(the_country_name+" blank row added to Reasons array!")
+for (var k = 0; k < (list.length); k++) {
+    chart_reasons_data[the_country_name][k+1] = list[k].name;
+    chart_reasons_data.labels[the_country_name][k+1] = list[k].age;
+    console.log("Index: "+(k+1)+" Name: "+chart_reasons_data[the_country_name][k+1]+": "+chart_reasons_data.labels[the_country_name][k+1]);
+}
+console.log (list);
+    } else {
+        console.log('intial label template');
+        console.log(chart_reasons_data['labels'].template);
+    }
+
+
+}
+
+
+
+
+console.log(chart_reasons_data);
+/*var projectselecting = document.getElementById("country_list");
+  var selectcontrol = document.createElement("select");
+  selectcontrol.id = "ProjectSelected";
+  projectselecting.appendChild(selectcontrol);
+  for (var current_project = 1; current_project < 2; current_project++) {
+  var option = document.createElement("option");
+  option.setAttribute("value", current_project);
+  option.text = data_table[current_project][0];
+  selectcontrol.appendChild(option);
+}*/
+
+console.log("SECTION FOUR: Documentation");
+var chart_documentation_data = {};
+chart_documentation_data['labels'] = [];
+for (var the_country = 0; the_country <data_table.length; the_country++){
+	 if (the_country != 0) {
+	 	var the_country_name = data_table[the_country][0];
+	 	chart_documentation_data[the_country_name]={};
+	 	chart_documentation_data[the_country_name]['nodocs']=[];
+	 	chart_documentation_data[the_country_name]['formal']=[];
+	 	chart_documentation_data[the_country_name]['informal']=[];
+
+	 };
+	for (var the_documentation = doc_insert; the_documentation <= doc_insert+11; the_documentation++) {
+		if (the_country == 0) {
+			//chart_documentation_data['labels'][the_documentation-4] = data_table[the_country][the_documentation];
+		} else {
+            console.log("DOC Insert: "+doc_insert+" DOC Pen: "+the_documentation+" Raw Data: "+data_table[the_country][the_documentation]);
+			var type_of_docs = (3-(the_documentation % 3));
+//7 no 8 informal 9 formal
+  //2    1          0
+            console.log("Type of Docs calculated to "+type_of_docs);
+			var type_of_situation = ((the_documentation - ((the_documentation+2) %3))-7)/3;
+            //((the_documentation-1) - type_of_docs) / 3;
+   // 7-9 total 10-12 owners 13-15 renters 16-18 family
+   // 0.               3.            2.       1
+            console.log("Type of Situation calculated to "+type_of_situation);
+		//	console.log("type of docs was "+type_of_docs);
+			//console.log("type of stiuation initially "+type_of_situation);
+			switch (type_of_situation) {
+				case 0 : //Total
+					type_of_situation = 0;
+					chart_documentation_data.labels[type_of_situation] = 
+"Total";
+                    console.log("Assigned: Total");
+
+			//console.log("type of situation changed to "+type_of_situation);
+					break;
+
+				case 1 : //Owners
+					type_of_situation = 1;
+					chart_documentation_data.labels[type_of_situation] = 
+"Owners";
+                    console.log("Assigned: Owners");
+
+			//console.log("type of situation changed to "+type_of_situation);
+					break;
+				case 2 : //Renters
+					type_of_situation = 2;
+					chart_documentation_data.labels[type_of_situation] = 
+"Renters";
+                    console.log("Assigned: Renters");
+
+			//console.log("type of situation changed to "+type_of_situation);
+					break;
+				case 3 : //Family Members
+					type_of_situation = 3;
+					chart_documentation_data.labels[type_of_situation] = 
+"Family Property";
+                    console.log("Assigned: Family Property");
+			//console.log("type of situation changed to "+type_of_situation);
+					break;
+			}
+
+
+			switch (type_of_docs) {
+				case 1 : //informal documents
+					chart_documentation_data[the_country_name].informal[type_of_situation] = parseFloat(data_table[the_country][the_documentation]);
+					break;
+				case 3 : //formal documents
+					chart_documentation_data[the_country_name].formal[type_of_situation] = parseFloat(data_table[the_country][the_documentation]);
+					break;
+				case 2 : //no documents
+					chart_documentation_data[the_country_name].nodocs[type_of_situation] = parseFloat(data_table[the_country][the_documentation]);
+					break;
+};
+
+/*
+
+    "% no documents - TOTAL rounded", //4
+    "% informal documents - TOTAL manually rounded",
+    "% formal documents - TOTAL rounded",
+    "% no documents - OWNERS rounded",
+    "% informal documents - OWNERS manually rounded",
+    "% formal documents - OWNERS rounded",
+    "% no documents - RENTERS rounded",
+    "% informal documents - RENTERS manually rounded",
+    "% formal documents - RENTERS rounded",
+    "% no documents - FAMILY MEMBER OWNS rounded",
+    "% informal documents - FAMILY MEMBER OWNS manually rounded",
+    "% formal documents - FAMILY MEMBER OWNS rounded", //15
+			};
+			*/
+		}
+	}
+};
+console.log(chart_documentation_data);
+
+console.log("SECTION TWO: WHO/Demo");
+
+var demo_r_translate = [ 2, -1,  1, -1,  0, -1];
+var demo_l_translate = [-1,  2, -1,  1, -1,  0];
+
+var chart_insecurity_data_l = {};
+var chart_insecurity_data_r = {};
+//chart_insecurity_data['labels'] = [];
+for (var the_country = 0; the_country <data_table.length; the_country++){
+	 if (the_country != 0) {
+	 	console.log(data_table);
+	 	var the_country_name = data_table[the_country][0];
+	 	console.log("Beginning "+the_country_name);
+	 	chart_insecurity_data_l[the_country_name]={};
+	 	chart_insecurity_data_l[the_country_name]['secure']=[];
+	 	chart_insecurity_data_l[the_country_name]['insecure']=[];
+	 	chart_insecurity_data_l[the_country_name]['unknown']=[];
+	 	chart_insecurity_data_r[the_country_name]={};
+	 	chart_insecurity_data_r[the_country_name]['secure']=[];
+	 	chart_insecurity_data_r[the_country_name]['insecure']=[];
+	 	chart_insecurity_data_r[the_country_name]['unknown']=[];
+	 };
+	 //console.log(chart_insecurity_data_l);
+	for (var the_insecure = demo_insert; the_insecure < reason_insert; the_insecure++) {
+		if (the_country == 0) {
+			//console.log("the_country equalled zero");
+
+		} else {
+			//console.log("the_country did not equal zero");
+			var who_are_they = (the_insecure - ((the_insecure-1) %3) - demo_insert)/3;
+            //19 20 21 | 18 19 20 | 0 1 2 |
+            //(((the_insecure-demo_insert)-((the_insecure-demo_insert)%3))/3);
+			var how_insecure = "Error";
+			if ((who_are_they%2) == 1) {
+				switch ((the_insecure-demo_insert)%3) {
+					case 0 : how_insecure = 'insecure'; break;
+					case 1 : how_insecure = 'unknown'; break;
+					case 2 : how_insecure = 'secure'; break;
+				};
+			//console.log(parseFloat(data_table[the_country][the_insecure]));
+			//console.log(who_are_they+" "+how_insecure);
+			//console.log("Adding: "+parseFloat(data_table[the_country][the_insecure])+" to "+who_are_they+" "+how_insecure);
+				console.log("LEFT SIDE: DEMO Pen: "+the_insecure+" Level Calculated as "+how_insecure+" Group Classified As "+who_are_they+" Data Listed as "+(data_table[the_country][the_insecure])+ "Translating to "+demo_l_translate[who_are_they]);
+				chart_insecurity_data_l[the_country_name][how_insecure][demo_l_translate[who_are_they]]=parseFloat(data_table[the_country][the_insecure]);
+			} else {
+				switch ((the_insecure-demo_insert)%3) {
+					case 0 : how_insecure = 'insecure'; break;
+					case 1 : how_insecure = 'unknown'; break;
+					case 2 : how_insecure = 'secure'; break;
+				};
+			//console.log(parseFloat(data_table[the_country][the_insecure]));
+			//console.log(who_are_they+" "+how_insecure);
+			//console.log("Adding: "+parseFloat(data_table[the_country][the_insecure])+" to "+who_are_they+" "+how_insecure);
+console.log("RIGHT SIDE: DEMO Pen: "+the_insecure+" Level Calculated as "+how_insecure+" Group Classified As "+who_are_they+" Data Listed as "+(data_table[the_country][the_insecure])+" Translating to "+demo_r_translate[who_are_they]);
+				chart_insecurity_data_r[the_country_name][how_insecure][demo_r_translate[who_are_they]]=parseFloat(data_table[the_country][the_insecure]);
+			}
+
+			
+
+
+		}
+	};
+
+	console.log("Final Insecurity Components");
+	console.log(chart_insecurity_data_l);
+	console.log(chart_insecurity_data_r);
+};
+
+
+
+
+
+var c_t = new Chartist.Pie('.ch-allprop', {
+//  labels:
+//  chart_tenure_data['labels'],
+  series: 
+  	chart_allprop_data[selected_country]
+  	
+}, {
+  donut: true,
+  donutWidth: 50,
+  donutSolid: true,
+
+ startAngle: 0,
+
+  showLabel: true,
+  labelInterpolationFnc: function (text) {
+      	if (text > 9) {
+        	return text + '%';
+    	} else {
+    		return "";
+    	}
+      },
+      plugins: [
+            Chartist.plugins.fillDonut({
+                items: [{
+                    content: '<i class="pie-label"></i>',
+                    position: 'bottom',
+                    offsetY : 5,
+                    offsetX: 0
+                }, {
+                    content: 'All<br>Property'
+                }]
+            })
+        ],
+});
+
+var c_t = new Chartist.Pie('.ch-main', {
+//  labels:
+//  chart_tenure_data['labels'],
+  series: 
+    chart_main_data[selected_country]
+    
+}, {
+  donut: true,
+  donutWidth: 50,
+  donutSolid: true,
+
+ startAngle: 0,
+  showLabel: true,
+  labelInterpolationFnc: function (text) {
+        if (text > 9) {
+            return text + '%';
+        } else {
+            return "";
+        }
+      },
+      plugins: [
+            Chartist.plugins.fillDonut({
+                items: [{
+                    content: '<i class="pie-label"></i>',
+                    position: 'bottom',
+                    offsetY : 5,
+                    offsetX: 0
+                }, {
+                    content: 'Main<br>Residence'
+                }]
+            })
+        ],
+});
+
+var c_r = new Chartist.Bar('.ch-reasons', {
+  labels: 
+  	chart_reasons_data.labels[selected_country],
+  series: [
+    chart_reasons_data[selected_country]
+
+    ]
+}, {
+	showLabel: true,
+  reverseData: true,
+  chartPadding: 5,
+  horizontalBars: true,
+  axisY: {
+  showGrid : false,
+    offset: 280,
+    labelOffset: {
+        y: 2
+    },
+
+  },
+  axisX: {
+showGrid: false,
+showLabel: false  	
+},
+  plugins: [
+    Chartist.plugins.ctBarLabels({
+      position: {
+        x: function (data) {
+            console.log(data);
+            if (data.value['x'] == 0.00001) { 
+                return data.x2 +100;
+                console.log("Question not asked")};
+        	console.log("data.x2="+data.x2);
+        
+        if (data.x2 >310){
+          return data.x2 - 15;
+      } else {
+      	return data.x2 + 10;
+      } 
+        }
+      },
+      labelOffset: {
+        y: 3
+      },
+      labelClass: "ch-reasons-labels",
+      labelInterpolationFnc: function (text) {
+      	if (text > 5) {
+        	return text + '%';
+    	} else if (text >= 1) {
+    		return "";
+    	} else if (text ==0.00001) {
+            text = 0.0;
+            value = 0.0;
+    		return "This question was not asked in this country.";
+    	} else {
+            return " "
+        }
+      }
+    })
+  ]
+});
+
+
+var c_d = new Chartist.Bar('.ch-docs', {
+  labels: chart_documentation_data.labels,
+  series: [
+  	chart_documentation_data[selected_country].formal,
+  	chart_documentation_data[selected_country].informal,
+  	chart_documentation_data[selected_country].nodocs
+  ]
+}, {
+  stackBars: true,
+chartPadding: {  bottom: 0 },
+    horizontalBars: true,
+      axisY: {
+  showGrid : false,
+  showLabel: true,
+  offset: 100
+  },
+  axisX: {
+  	showGrid : false,
+  	showLabel: false,
+  	
+  },
+  plugins: [
+    Chartist.plugins.ctBarLabels({
+      position: {
+        x: function (data) {
+          return data.x2 - 13
+        }
+      },
+      labelOffset: {
+        y: 5
+      },
+      labelClass: "ch-documentation-labels",
+      labelInterpolationFnc: function (text) {
+      	if (text > 7) {
+        	return text + '%';
+    	} else {
+    		return "";
+    	}
+      }
+    })
+  ]
+}).on('draw', function(data) {
+  if(data.type === 'bar') {
+    data.element.attr({
+      style: 'stroke-width: 25px'
+    });
+  }
+});
+
+	//	<div class="ch-owners" id="chart-tenure-owners"><BR>
+
+var c_o_l = new Chartist.Bar('.ch-owners-l', {
+	series: [
+	chart_insecurity_data_l[selected_country]["secure"],
+	chart_insecurity_data_l[selected_country]["insecure"],
+	chart_insecurity_data_l[selected_country]["unknown"],
+	
+  ]
+}, {
+  stackBars: true,
+  chartPadding: {  right: 0, left: 0 },
+    horizontalBars: true,
+        axisY: {
+  showGrid : false,
+  showLabel: false,
+  },
+  axisX: {
+  	showGrid : false,
+  	showLabel: false,
+  	
+  },
+  plugins: [
+    Chartist.plugins.ctBarLabels({
+      position: {
+        x: function (data) {
+            var barwidth = data.x2-data.x1;
+            if (barwidth > 35) {
+                return data.x2 - 15;
+            } else {
+                return data.x1 + 11;
+            }
+        }
+      },
+      labelOffset: {
+        y: 5
+      },
+      labelClass: "ch-owners-labels",
+      labelInterpolationFnc: function (text) {
+      	if (text > 11) {
+        	return text + '%';
+    	} else {
+    		return "";
+    	}
+      }
+    })
+  ]
+}).on('draw', function(data) {
+  if(data.type === 'bar') {
+    data.element.attr({
+      style: 'stroke-width: 25px'
+    });
+  }
+});
+
+var c_o_r = new Chartist.Bar('.ch-owners-r', {
+	series: [
+	chart_insecurity_data_r[selected_country]["secure"],
+	chart_insecurity_data_r[selected_country]["insecure"],
+	chart_insecurity_data_r[selected_country]["unknown"],
+	
+  ]
+}, {
+  stackBars: true,
+
+  chartPadding: {  right: 0, left: 0 },
+    horizontalBars: true,
+        axisY: {
+  showGrid : false,
+  showLabel: false,
+  },
+  axisX: {
+  	showGrid : false,
+  	showLabel: false,
+  	
+  },
+  plugins: [
+    Chartist.plugins.ctBarLabels({
+      position: {
+        x: function (data) {
+            var barwidth = data.x2-data.x1;
+            if (barwidth > 35) {
+                return data.x2 - 15;
+            } else {
+                return data.x1 + 11;
+            }
+        }
+        },
+      labelOffset: {
+        y: 5
+      },
+      labelClass: "ch-owners-labels",
+      labelInterpolationFnc: function (text) {
+      	if (text > 9) {
+        	return text + '%';
+    	} else {
+    		return "";
+    	}
+      }
+    })
+  ]
+}).on('draw', function(data) {
+  if(data.type === 'bar') {
+    data.element.attr({
+      style: 'stroke-width: 25px'
+    });
+  }
+});
+
+/*$("#country_list").change(function() {
+    var selectedproject = document.getElementById("ProjectSelected");
+    selected_country = data_table[selectedproject.selectedIndex+1][0];
+    console.log("Select New Project: "+selected_country);
+    c_d.update({
+  
+  labels: chart_documentation_data.labels,
+  series: [
+  	chart_documentation_data[selected_country].formal,
+  	chart_documentation_data[selected_country].informal,
+  	chart_documentation_data[selected_country].nodocs
+  ]
+});
+    c_r.update({ labels: 
+  	chart_reasons_data['labels'][selected_country], series: [
+    chart_reasons_data[selected_country]
+
+    ]});
+    c_t.update({series: 
+  	chart_tenure_data[selected_country]
+  	
+});
+    c_o_r.update({ series: [
+	chart_insecurity_data_r[selected_country]["secure"],
+	chart_insecurity_data_r[selected_country]["insecure"],
+	chart_insecurity_data_r[selected_country]["unknown"],
+	
+  ]});
+    c_o_l.update({
+	series: [
+	chart_insecurity_data_l[selected_country]["secure"],
+	chart_insecurity_data_l[selected_country]["insecure"],
+	chart_insecurity_data_l[selected_country]["unknown"],
+	
+  ]});
+});*/
+
+
+</script>
+</html>
