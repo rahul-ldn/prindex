@@ -542,7 +542,7 @@
     	}
 
         /* Dropdown Button */
-	    .comparison-choice {
+.comparison-choice {
   background-color: #F0A483;
   border: 2px solid white;
   color: white;
@@ -700,8 +700,8 @@
 
 
     	#reasons {
-    		height: 220;
-            width: 600;
+    		height: 250;
+            width: 700;
     		
     		float: left;
     	
@@ -1056,8 +1056,8 @@
             <div class="intro-block" style=" display: inline-block;">
                 <h1><span class="country-header" id="survey_header">COUNTRY</span></h1>
                 <div class="rich-text">
-                    <UL><LI><span id="allprop-insecure">ALLPROP</span> percent of the adult population feel insecure in their land and property rights overall.</LI>
-<LI><span  id="home-insecure">HOME</span> percent of the adult population feel insecure in in rights to their home.</LI>
+                    <UL><LI><span id="allprop-insecure">ALLPROP</span>% of the adult population feel insecure in their land and property rights overall.</LI>
+<LI><span  id="home-insecure">HOME</span>% of the adult population feel insecure in in rights to their home.</LI>
 <LI>The top reason cited for insecurity is: <span  id="top-reason">REASON</span></LI></UL>
 
                 </div>
@@ -2758,7 +2758,7 @@ var c_r = new Chartist.Bar('.ch-reasons', {
 }, {
 	showLabel: true,
   reverseData: true,
-  chartPadding: 10,
+  chartPadding: 30,
   horizontalBars: true,
   axisY: {
   showGrid : false,
@@ -2778,7 +2778,8 @@ showLabel: false
         x: function (data) {
             console.log(data);
             if (data.value['x'] == 0.00001) { 
-                return data.x2 +100;
+                return data.x2
+                 +100;
                 console.log("Question not asked")};
         	console.log("data.x2="+data.x2);
         
