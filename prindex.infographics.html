@@ -14,9 +14,10 @@
         <script src="html2pdf.bundle.min.js"></script>
         <script src="chartist-bar-labels.js"></script>
         <script src="chartist-plugin-fill-donut.js"></script>
-        <script src="https://www.prindex.net/static/vendor/rahul/js/country_data.js"></script>
+        <!---<script src="https://www.prindex.net/static/vendor/rahul/js/country_data.js"></script>
         <!--link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Rubik"-->
+        <script src="https://rahul-ldn.github.io/prindex/country_data.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
    
@@ -497,7 +498,7 @@
 
         #slogan {
             float: left;
-            font-size: 25;
+            font-size: 21;
             color: #690028;
             padding-left: 45;
             font-weight: 500;
@@ -747,22 +748,13 @@
 
 
 
-<!-- fetch text
-	Dropdown
-	Headers
-	Legend
-	Labels
-	Fooder - explanation
-		- methodology
-	-->
 
-<!-- establish structure -->
 
 
 <div id="pageone" class="pages">
 <div id="header">
 	<div id="brand"></div>
-    <div id="header-right"><span id="survey_header_pg1">COUNTRY</span><div id="slogan">Securing Property Rights</div></div>
+    <div id="header-right"><span id="survey_header_pg1">COUNTRY</span><div id="slogan">Securing Land and Property Rights</div></div>
 	<!--<div id="selector">
 		<div id="country_list" class="country_list" ></div>
 	</div>-->	
@@ -818,19 +810,12 @@
 </div>
 </div></div>
 
-<!--div id="footer" style="height: 75px">
-    <div id="description"><b>Prindex</b> is a global survey measuring perceptions of land and property rights. By developing a deeper understanding of how they work in practice, Prindex is helping build a world where everyone feels secure in their right to their home and land.  </div>
-</div-->
+
 
 <div style="height: 10px"></div>
 
 <div id="pagetwo" class="pages">
-<!--div id="header">
-    <div id="brand"></div><div id="slogan">Securing Property Rights: <span id="survey_header_pg2">COUNTRY</span> </div>
-    <!--<div id="selector">
-        <div id="country_list" class="country_list" ></div>
-    </div>   
-</div>-->
+
 <div class="lower-tier" >
     <div id="Reasons">
         <div class="chart-id-number-lower">3</div>
@@ -890,10 +875,10 @@ For the full list of which documents are considered as Formal Documents and Info
 
 
 // Fetch the country variable
-var country_code="ZW";
+var country_code=rs_get_country_code();
 
 //var country_name=rs_get_name_by_code(country_code);
-var country_name = "Zimbabwe"
+var country_name = rs_get_country_name(country_code);
 
 
 //document.getElementById('survey_sample').innerHTML = the_sample;  
@@ -1172,7 +1157,7 @@ showLabel: false
       },
       labelClass: "ch-reasons-labels",
       labelInterpolationFnc: function (text) {
-      	if (text > 5) {
+      	if (text > 2) {
         	return text + '%';
     	} else if (text >= 1) {
     		return "";
@@ -1366,54 +1351,19 @@ var c_o_r = new Chartist.Bar('.ch-owners-r', {
   }
 });
 
-/*$("#country_list").change(function() {
-    var selectedproject = document.getElementById("ProjectSelected");
-    selected_country = data_table[selectedproject.selectedIndex+1][0];
-    console.log("Select New Project: "+selected_country);
-    c_d.update({
-  
-  labels: chart_documentation_data.labels,
-  series: [
-  	chart_documentation_data[selected_country].formal,
-  	chart_documentation_data[selected_country].informal,
-  	chart_documentation_data[selected_country].nodocs
-  ]
-});
-    c_r.update({ labels: 
-  	chart_reasons_data['labels'][selected_country], series: [
-    chart_reasons_data[selected_country]
+function rs_get_country_code() {
+    var result = null,
+        tmp = [];
+    location.search
+        .substr(1)
+        .split("&")
+        .forEach(function (item) {
+          tmp = item.split("=");
+          if (tmp[0] === "cc") result = decodeURIComponent(tmp[1]);
+        });
+    return result;
+}
 
-    ]});
-    c_t.update({series: 
-  	chart_tenure_data[selected_country]
-  	
-});
-    c_o_r.update({ series: [
-	chart_insecurity_data_r[selected_country]["secure"],
-	chart_insecurity_data_r[selected_country]["insecure"],
-	chart_insecurity_data_r[selected_country]["unknown"],
-	
-  ]});
-    c_o_l.update({
-	series: [
-	chart_insecurity_data_l[selected_country]["secure"],
-	chart_insecurity_data_l[selected_country]["insecure"],
-	chart_insecurity_data_l[selected_country]["unknown"],
-	
-  ]});
-});*/
-
-var element = document.getElementById('pageone');
-var opt = {
-  margin:       0,
-  filename:     'myfile.pdf',
-  image:        { type: 'jpeg', quality: 0.98 },
-  html2canvas:  { scale: 2 },
-  jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-};
-
-// New Promise-based usage:
-html2pdf(element, opt);
 
 </script>
 </html>
