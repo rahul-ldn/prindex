@@ -1,0 +1,1419 @@
+
+<html>
+  <head>
+  <!--  <link rel="stylesheet" href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.1.1/papaparse.min.js"></script> -->
+    <link rel="stylesheet" href="chartist.min.css">
+    <script src="chartist.min.js"></script>
+        <script src="jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.0.0/polyfill.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+        <script src="html2pdf.bundle.min.js"></script>
+        <script src="chartist-bar-labels.js"></script>
+        <script src="chartist-plugin-fill-donut.js"></script>
+        <script src="https://www.prindex.net/static/vendor/rahul/js/country_data.js"></script>
+        <!--link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Rubik"-->
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+   
+    <style type="text/css">
+    	body {
+    		font-family: 'Rubik', sans-serif;
+    	}
+
+        .general {
+
+        }
+
+      
+
+        .pages {
+            height: 1100px;
+            width: 780px;
+        }
+
+        .chart-id-number-one {
+            color: black !important;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-right:10px;
+                        font-size:20;
+        }
+
+    	.chart-id-number-upper {
+    		color: black !important;
+    		text-transform: uppercase;
+    		display: inline-block;
+            margin-right:5px;
+                        font-size:20;
+    	}
+
+    	.chart-id-number-lower {
+    		color: white !important;
+    		text-transform: uppercase;
+    		display: inline-block;
+            margin-right:5px;
+                        font-size:20;
+    	}
+
+        .chart-id-number-pink {
+            color: 690028 !important;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-right:5px;
+                        font-size:20;
+        }
+
+    	.chart-id {
+    		color: black;
+    		text-transform: uppercase;
+    		display: inline-block;
+            font-weight: 700;
+                        font-size:20;
+    	}
+
+        .chart-id-pink {
+            color: #690028 !important;
+            text-transform: uppercase;
+            display: inline-block;
+            font-weight: 700;
+                        font-size:20;
+        }
+
+        .chart-id-peach {
+            color: white !important;
+            text-transform: uppercase;
+            display: inline-block;
+            font-weight: 700;
+            font-size:20;
+        }
+
+    	.ct-slice-donut-solid {
+    		stroke: white;
+    		stroke-width: 6px !important;
+    	}
+    	.ct-series-a .ct-slice-donut-solid {
+    		fill: #690028 !important;
+    	}
+    	.ct-series-b .ct-slice-donut-solid {
+    		fill: #FA5A14 !important;
+    		
+    	}
+    	.ct-series-c .ct-slice-donut-solid {
+    		fill: #BEBEAF !important;
+    		
+    	}
+
+    	.ct-series-a .ct-bar {
+    		stroke: #690028 !important;
+    		stroke-width: 30px;
+
+    	}
+    	.ct-series-b .ct-bar {
+    		stroke: #FA5A14 !important;
+    		stroke-width: 30px;
+
+    		
+    	}
+    	.ct-series-c .ct-bar {
+    		stroke: #BEBEAF !important;
+    		stroke-width: 30px;
+
+    		
+    	}
+
+        .ch-owners-r .ct-series-a .ct-bar {
+            stroke: #FA5A14 !important;
+            stroke-width: 40px;
+        }
+
+        .ch-owners-r .ct-series-b .ct-bar {
+            stroke: #690028 !important;
+            stroke-width: 40px;
+        }
+
+        .ch-owners-labels {
+            font-size: 13;
+            stroke: orange !important;
+            z-index: 100;
+            overflow: visible;
+        }
+
+        .ch-owners-r .ct-series-a .ch-owners-labels {
+            z-index: 100;
+            stroke: #FA5A14 !important;
+       position: relative !important;
+            overflow: visible;
+        }
+
+        .ch-owners-r .ct-series-b .ch-owners-labels {
+            z-index: -1;
+            stroke: white !important;
+            display: none;
+        }
+
+        .ch-owners-r .ct-series-c .ch-owners-labels {
+            z-index: -1;
+            stroke: white !important;
+            display: none;
+        }
+
+        .ch-owners-l .ct-series-a .ct-bar {
+            stroke: #FA5A14 !important;
+            stroke-width: 40px;
+        }
+
+        .ch-owners-l .ct-series-b .ct-bar {
+            stroke: #690028 !important;
+            stroke-width: 40px;
+        }
+
+        .ch-owners-l .ct-series-a .ch-owners-labels {
+            z-index: 100;
+            stroke: #FA5A14 !important;
+       position: relative !important;
+            overflow: visible;
+        }
+
+        .ch-owners-l .ct-series-b .ch-owners-labels {
+            z-index: -1;
+            stroke: white !important;
+            display: none;
+        }
+
+        .ch-owners-l .ct-series-c .ch-owners-labels {
+            z-index: -1;
+            stroke: white !important;
+            display: none;
+        }
+
+    	.ct-chart-donut .ct-label {
+    		font-size: 20;
+    		color: black !important;
+    		fill: black;
+    	}
+
+    	.ch-reasons .ct-series-a .ct-bar  {
+    		stroke: #690028 !important;
+    		stroke-width: 25px;
+    		color: white;
+    		
+    	}
+
+        .ct-vertical {
+            height: 32px !important;
+            font-size: 12px;
+            font-weight: 500;
+            vertical-align: bottom
+        }
+
+
+
+
+    	.ch-reasons .ct-labels {
+    		color: white !important;
+    		height: 10px !important;
+    		vertical-align: 2px;
+            font-size: 7 !important;
+    		
+    	}
+
+    	.ch-reasons .ct-start {
+    		color: black;
+
+    		margin: 0px 0px 0px 0px;
+    		padding: 0px 0px 0px 0px;
+    	}
+    	.ch-docs .ct-label {
+    		color: black;
+            padding-top: 15px;
+    		
+    	}
+
+
+        .ch-docs .ct-series-a .ct-bar {
+            stroke: #1496A0 !important;
+        }
+
+        .ch-docs .ct-series-b .ct-bar {
+            stroke: #FFEF32 !important;
+        }
+        .ch-docs .ct-series-a .ch-documentation-labels {
+     
+            
+            stroke: white !important;
+            fill: white;
+        }
+
+                .ch-docs .ct-series-b .ch-documentation-labels {
+     
+            
+            stroke: #4C4C4C !important;
+        }
+        .ch-docs .ct-series-c .ch-documentation-labels {
+     
+
+            stroke: white !important;
+            fill: white;
+        }
+
+        .ch-docs .ct-series-c .ct-bar {
+            stroke: #5AC88C !important;
+        }
+    	#chart-tenure-allprop {
+            display: inline-block;
+            width: 360;
+            margin-left: -10;
+            margin-right: 0;
+
+   
+    		
+    		height: 300;
+    	}
+        #chart-tenure-main {
+                 
+        display: inline-block;
+            margin-left: 0;
+            margin-right: 0;
+            width: 360;
+            height: 300;
+        }
+		.chart-key {
+			float:left;
+			margin-left: 60;
+		}
+
+		.chart-element { 
+			display: inline-block;
+			font-size: 15;
+			color: white; }
+
+    	.chart-key-example {
+    		width: 15;
+    		height: 15;
+    		background-color: white;
+    		display: inline-block; 
+    		margin-right: 10;
+    		margin-left: 15;
+    	}
+
+    	#tenure-pie {
+    		float:left;
+    	}
+
+        .ct-fill-donut-label {
+            text-align: center !important;
+        }
+
+    	#ch-tenure {
+
+    	}
+    	#tenure-detail {
+    		height: 300;
+    		float: left;
+    	}
+
+
+
+    	.chart-description-white {
+    		font-size: 12;
+    		color: #black;
+            display: inline-block;
+            margin-left: 15px;
+                        margin-top: 5px;
+
+            vertical-align: top;
+            font-weight: 500;
+    	}
+
+    	.chart-description-colour {
+    		font-size: 12;
+    		color: white;
+            display: inline-block;
+            margin-left: 15px;
+            margin-top: 5px;
+            vertical-align: top;
+    		
+            font-weight: 500;
+    	}
+
+
+        .chart-description-pink {
+            font-size: 12;
+
+            color: #690028;
+            display: inline-block;
+            margin-left: 15px;
+            margin-top: 5px;
+            vertical-align: top;
+            font-weight: 500;
+            
+        }
+        svg.ct-chart-bar, svg.ct-chart-line{
+    overflow: visible;
+}
+
+
+
+    	.ch-documentation-labels {
+    		font-size: 15;
+    		stroke: white !important;
+    	}
+    	.ch-reasons-labels {
+    		font-size: 15;
+    		stroke: white !important;
+            font-weight: 100;
+    	}
+
+    	.labels-tenure-owners {
+    		vertical-align: top;
+    		width: 40px;
+    		display: inline-block;
+
+    		padding-top: 20px;
+    	}
+
+    	.owners-label-text {
+    		font-size: 15;
+    		color: black;
+    		margin-bottom: 15;
+    		
+    	}
+
+    	#owners {
+    		background-image: url("icons/Tenure-type_owner.svg");
+    		height: 40;
+            padding-top: 5px;
+    		width: 40;
+    		background-size: contain;
+
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+    	#renters{
+    		background-image: url("icons/Tenure-type_renter.svg");
+    		height: 40;
+            padding-top: 5px;
+    		width: 40;
+    		background-size: contain;
+    	
+
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+
+    	#urban{
+    		background-image: url("icons/Location_urban.svg");
+    		height: 40;
+            padding-top: 5px;
+    		width: 40;
+    		background-size: contain;
+    	
+
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+    	#rural{
+    		background-image: url("icons/Location_rural.svg");
+    		height: 40;
+            padding-top: 5px;
+    		width: 40;
+    		background-size: contain;
+    	
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+    	#women {
+    		background-image: url("icons/Gender_female.svg");
+    		height: 40;
+            padding-top: 5px;
+    		width: 40;
+    		background-size: contain;
+    	
+
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+    	#men {
+    		background-image: url("icons/Gender_male.svg");
+    		height: 40;
+            padding-top: 5px;
+    		width: 40;
+    		background-size: contain;
+    		background-repeat: no-repeat;
+    		background-position: center;
+    	}
+
+    	#chart-tenure-owners-l {
+    		
+    		display: inline-block;
+    		width: 300;
+    		margin-left: -10;
+    		margin-right: 20;
+
+    	}
+    	#chart-tenure-owners-r {
+    	display: inline-block;
+    		margin-left: -10;
+    		margin-right: 20;
+    		width: 300;
+    	}
+
+    	#brand {
+    		background-image: url("logos/Prindex_logo_horizontal_orange-white.svg");
+    		height: 195;
+    		max-width: 350;
+            width:225;
+            padding-left: 35;
+            padding-right: 35;
+    		background-size: contain;
+    		background-repeat: no-repeat;
+            background-color: #690028;
+
+    		display: inline-block;
+
+    	}
+
+        #header-right {
+            height:195;
+            width: 410;
+            display: inline-block;
+            vertical-align:top;
+            background-color: #FA5A14;
+        }
+
+        #survey_header_pg1 {
+                        float: left;
+                        padding-top: 45px;
+            padding-left: 45;
+            color: white;
+            font-size: 45;
+            font-weight: 700;
+        }
+
+        #slogan {
+            float: left;
+            font-size: 25;
+            color: #690028;
+            padding-left: 45;
+            font-weight: 500;
+        }
+
+    	#selector {
+    		width: 200;
+    		padding-left: 25;
+
+    		display: inline-block;
+
+    	}
+
+    	#logos {
+            color: white;
+            font-size: 10;
+            height:100;
+            width: 465px;
+            display: inline-block;
+            padding: 25px 25px 25px 25px;
+            background-color: #690028;
+
+
+
+    	}
+
+    	#gla {
+    		background-image: url("logos/GLA_Logo_Lg_FINAL.png");
+    		height: 75;
+    		width: 95;
+    		background-size: contain;
+    		display: inline-block;
+    		background-repeat: no-repeat;
+    		background-position: top;
+            margin-bottom: 5px;
+            padding-top:20px;
+    	}
+
+    	#odi {
+    		background-image: url("logos/ODI-logo_colour.png");
+            height: 80;
+            width: 100;
+    		background-size: contain;
+    		background-repeat: no-repeat;
+    		background-position: top;
+    		display: inline-block;
+
+    	}
+
+    	#ukaid {
+    		background-image: url("logos/UKAID-4C.png");
+            height: 80;
+            width: 100;
+    		background-size: contain;
+    		background-repeat: no-repeat;
+    		background-position: top;
+    		display: inline-block;
+                        margin-bottom: 15px;
+    	}
+
+    	#omidyar {
+    		background-image: url("logos/ON_Logo_Primary_CMYK.png");
+    		height: 75;
+    		width: 145;
+    		background-size: contain;
+    		background-repeat: no-repeat;
+    		background-position: top;
+    		display: inline-block;
+    	}
+
+    	#header {
+    		height: 195;
+    		width: 780;
+    		background-color: #FA5A14;
+    	}
+
+        .first-tier {
+            width: 730;
+            min-height: 360px;
+            max-height: 365px;
+            padding-top: 30px;
+            padding-left: 50px;
+                        display:inline-block;
+        }
+
+    	.upper-tier {
+    		width: 730;
+            min-height: 360px;
+            max-height: 365px;
+            padding-top: 30px;
+    		padding-left: 50px;
+                        display:inline-block;
+    	}
+
+    	.lower-tier {
+    		background-color: #EC9164 !important;
+    		width: 730;
+            min-height: 360px;
+            max-height: 365px;
+            padding-top: 30px;
+    		padding-left: 50px;
+                        display:inline-block;
+    	}
+
+        .pink-tier {
+            background-color: #F6DCCF !important;
+            width: 730;
+            height: 365px;
+            padding-top: 30px;
+            padding-left: 50px;
+                        display:inline-block;
+        }
+
+    	#footer {
+    		width: 780;
+            height:220px;
+    	}
+
+    	#documentation {
+    	
+
+                        height: 300;
+            width: 700;
+            
+            float: left;
+    		
+
+    		
+
+    	}
+
+
+
+    	#chart-documentation {
+
+    	}
+
+
+
+    	#reasons {
+    		height: 370;
+            width: 700;
+    		
+    		float: left;
+    	
+    	}
+
+
+
+    	#chart-reasons {
+
+            margin-top: -20;
+    		color: white !important;
+    	}
+
+        #introduction {
+            background-color: #BEBEAF;
+            width: 500;
+            color: #690028;
+            font-size: 20;
+            font-weight: 500;
+            height:100px;
+            width: 730px;
+            float: inline-block;
+            padding: 15px 25px 0px 25px;
+
+        }
+
+    	#description {
+    		background-color: #FA5A14;
+    		color: white;
+    		font-size: 10;
+    		height:75;
+    		width: 270px;
+    		float: left;
+    		padding: 30px 30px 15px 30px;
+
+    	}
+
+        #third-about {
+            background-color: #690028;
+            color: white;
+            font-size: 10;
+            height:75;
+            width: 200px;
+            display:inline-block;
+            padding: 30px 10px 30px 30px;
+            margin-right:20px;
+            vertical-align:top;
+
+
+        }
+
+    	#methodology {
+    		background-color: #BEBEAF;
+    		color: black;
+    		font-size: 10;
+    		height:75;
+    		width:390px;
+    		float: left;
+            padding: 30px 30px 15px 30px;
+    	}
+
+    	.country_list {
+			float:left;
+    		width: 100%;
+    		margin-bottom: 10px;
+		}    
+
+		.country_list select {
+        	font-family: 'Rubik';
+        	font-size: 20;
+        	display: inline-block;
+        	width: 100%;
+        	cursor: pointer;
+        	height:55;
+        	outline: 0;
+        	border: 0px solid #FFFFFF;
+        	border-radius: 0px;
+        	background: #FFFFFF;
+        	color: #F0A483;
+
+    	}
+        .country_list select::-ms-expand {
+            display: none;
+        }
+        .country_list select:hover,
+        .country_list select:focus {
+            color: #FA5A14;
+            background: #FFFFFF;
+        }
+        .country_list select:disabled {
+            color: #F0A483;
+            pointer-events: none;
+        }
+
+.	country_list select:hover ~ .country_list_arrow,
+.country_list select:focus ~ .scountry_list_arrow {
+    border-top-color: #FFFFFF;
+}
+.country_list select:disabled ~ .country_list_arrow {
+    border-top-color: #FFFFFF;
+}
+
+    </style>
+  </head>
+
+
+
+<!-- fetch text
+	Dropdown
+	Headers
+	Legend
+	Labels
+	Fooder - explanation
+		- methodology
+	-->
+
+<!-- establish structure -->
+
+
+<div id="pageone" class="pages">
+<div id="header">
+	<div id="brand"></div>
+    <div id="header-right"><span id="survey_header_pg1">COUNTRY</span><div id="slogan">Securing Property Rights</div></div>
+	<!--<div id="selector">
+		<div id="country_list" class="country_list" ></div>
+	</div>-->	
+</div>
+<div class="general" id="introduction">
+        Property rights are a cornerstone of economic development and social justice. One fundamental way of understanding their strength is to ask people how secure they feel in these rights.
+    
+</div>
+<div class="upper-tier" >
+	<div id="tenure-pie">
+		<div class="chart-id-number-upper">1</div>
+		<div class="chart-id">Levels of Insecurity</div><div class="chart-description-white" style="margin-top: -2px;">The percentage of the adult population<BR>that feels insecure in their property rights</BR></BR></div>
+        <div style="float:left">
+		<div class="ch-allprop" id="chart-tenure-allprop"></div>
+        <div class="ch-main" id="chart-tenure-main"></div>
+        <div class="chart-key" style="margin-top: -25; margin-left: 200px" id="key-documentation">
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #690028"></div>Secure</div>
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #FA5A14"></div>Insecure</div>
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #BEBEAF"></div>No Answer</div>
+        </div>  </div>  </div> </div>
+
+
+<div class="pink-tier" >
+	<div id="tenure-detail">
+		<div class="chart-id-number-pink">2</div>
+		<div class="chart-id-pink">Who Feels Insecure</div><div class="chart-description-pink">Insecurity by gender, population density, or tenure type<BR></div>
+		<div style="float:left">
+		<div class="labels-tenure-owners">
+			<div id="renters"></div>
+			<div class="owners-label-text">Renters</div>
+			<div id="rural"></div>
+			<div class="owners-label-text">Rural</div>
+			<div id="men"></div>
+			<div class="owners-label-text" style="margin-bottom: 50">Men</div>
+		</div>
+		<div class="ch-owners-l" id="chart-tenure-owners-l"></div>
+		<div class="labels-tenure-owners">
+			<div id="owners"></div>
+			<div class="owners-label-text">Owners</div>
+			<div id="urban"></div>
+			<div class="owners-label-text">Urban</div>
+			<div id="women"></div>
+			<div class="owners-label-text"  style="margin-bottom: 50">Women</div>
+		</div>
+		<div class="ch-owners-r" id="chart-tenure-owners-r"></div>
+	</div>
+<div class="chart-key" style="margin-top: -20; margin-left: 180px" id="key-documentation">
+			
+			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #FA5A14"></div>Insecure</div>
+			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #690028"></div>Secure</div>
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #BEBEAF"></div>No Answer</div>
+		</div>
+</div>
+</div></div>
+
+<!--div id="footer" style="height: 75px">
+    <div id="description"><b>Prindex</b> is a global survey measuring perceptions of land and property rights. By developing a deeper understanding of how they work in practice, Prindex is helping build a world where everyone feels secure in their right to their home and land.  </div>
+</div-->
+
+<div style="height: 10px"></div>
+
+<div id="pagetwo" class="pages">
+<!--div id="header">
+    <div id="brand"></div><div id="slogan">Securing Property Rights: <span id="survey_header_pg2">COUNTRY</span> </div>
+    <!--<div id="selector">
+        <div id="country_list" class="country_list" ></div>
+    </div>   
+</div>-->
+<div class="lower-tier" >
+    <div id="Reasons">
+        <div class="chart-id-number-lower">3</div>
+        <div class="chart-id-peach">Why people feel insecure</div><div class="chart-description-colour">The reasons cited by those who feel insecure</BR></div>
+        <div class="ch-reasons" id="chart-reasons"></div>
+    </div>
+	
+</div>
+<div class="upper-tier" >
+    <div id="documentation">
+        <div class="chart-id-number-upper">4</div>
+        <div class="chart-id">Documentation</div><div class="chart-description-white" style="margin-top: -2px;">Types of property documentation held by people,<BR>broken down by tenure arrangements</BR></div>
+        <div class="ch-docs" id="chart-documentation"></div>
+        <div class="chart-key" style="margin-top: -20; margin-right: -20px" id="key-documentation">
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #1496A0"></div>Formal Documents</div>
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #FFEF32"></div>Informal Documents</div>
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #5AC88C"></div>No Documents</div>
+
+        </div>
+    </div>
+</div>
+<div id="footer">
+<div style="background-color: #FA5A14; width:780">
+    <div id="methodology"><b>Methodology</b>    
+A nationally representative sample of adults 18 years or older in in <span id="survey_country_p1">COUNTRY</span> were asked about their perceptions and experiences with property rights and tenure security.
+
+For the full list of which documents are considered as Formal Documents and Informal Documents in <span id="survey_country_p2">COUNTRY</span> please visit www.prindex.net/documentation</div>
+<div id="second-about"><div id="description"><b>Prindex</b> is a global survey measuring perceptions of land and property rights. By developing a deeper understanding of how they work in practice, Prindex is helping build a world where everyone feels secure in their right to their home and land.  </div></div></div>
+<div style="display:inline-block;background-color: #690028;width:780px;">
+<div id="logos">
+        <div id="gla"></div>
+        <div id="odi"></div>
+        <div id="ukaid"></div>
+        <div id="omidyar"></div>
+    </div>
+	<div id="third-about" ><b>Prindex</b>, an initiative of Global Land Alliance and Overseas Development Institute with support from DFID and Omidyar Network, is the first global measurement of peoples' perceptions of their property rights. </div>
+	
+	</div></div>
+</div>
+<script>
+	/*Papa.parse("file", {
+		download: true,
+		header: true,
+		complete: function(results) {
+			console.log(results);
+			$.each(results.data, function (ib, el) {
+				if (ib != 0) {
+  //Name  Acronym Affiliation City  Country Website Principal Principal's Representative  URL Logo Link Location  Latitude  Longitude
+  					$.each(el, function(j, cell) {
+						}
+				}
+		}
+	}
+	});*/
+
+	
+
+
+// Fetch the country variable
+var country_code="ZW";
+
+//var country_name=rs_get_name_by_code(country_code);
+var country_name = "Zimbabwe"
+
+
+//document.getElementById('survey_sample').innerHTML = the_sample;  
+//document.getElementById('survey_year').innerHTML = the_year;
+document.getElementById('survey_country_p1').innerHTML = country_name;
+document.getElementById('survey_country_p2').innerHTML = country_name;
+document.getElementById('survey_header_pg1').innerHTML = country_name;
+//document.getElementById('survey_header_pg2').innerHTML = country_name;
+
+
+console.log("SECTION ONE: Perceptions");
+var chart_main_data = {};
+var chart_allprop_data = {};
+chart_main_data['labels'] = [];
+chart_allprop_data['labels'] = [];
+
+/*
+	"% insecure - TOTAL rounded", //1
+	"% secure - TOTAL rounded",
+    "% don't know or refused to answer - TOTAL manually rounded", */
+
+
+
+
+	 	var chart_allprop_data={};
+        chart_allprop_data['labels'] = [];
+        chart_allprop_data['data'] = [];
+        
+        chart_allprop_data['labels'][0]="Tenure Security";
+        chart_allprop_data.data[0]=parseFloat(all_country_data[country_code].insecurity.allprop.allresp[0]);
+		chart_allprop_data['labels'][1]="Tenure Insecurity";
+		chart_allprop_data.data[1]=parseFloat(all_country_data[country_code].insecurity.allprop.allresp[1]);
+        chart_allprop_data['labels'][2]="Don't Know or Refused to Answer";
+        chart_allprop_data.data[2]=parseFloat(all_country_data[country_code].insecurity.allprop.allresp[2]);
+
+        var chart_main_data=[];
+        chart_main_data['labels'] = [];
+        chart_main_data['data'] = [];
+        chart_main_data['labels'][0]="Tenure Security";
+        chart_main_data.data[0]=parseFloat(all_country_data[country_code].insecurity.homes.allresp[0]);
+        chart_main_data['labels'][1]="Tenure Insecurity";
+        chart_main_data.data[1]=parseFloat(all_country_data[country_code].insecurity.homes.allresp[1]);
+        chart_main_data['labels'][2]="Don't Know or Refused to Answer";
+        chart_main_data.data[2]=parseFloat(all_country_data[country_code].insecurity.homes.allresp[2]);
+
+console.log(chart_allprop_data);
+console.log(chart_main_data);
+
+console.log("SECTION THREE: Why/Reasons");
+var chart_reasons_data = {};
+chart_reasons_data['labels'] = [];
+chart_reasons_data['data'] = [];
+chart_reasons_data.data[0]=parseFloat(all_country_data[country_code].reasons.askedtoleave);
+chart_reasons_data.labels[0]="The owner or person on the lease may ask me to leave";
+
+chart_reasons_data.data[1]=parseFloat(all_country_data[country_code].reasons.family);
+chart_reasons_data.labels[1]="Disagreements with family or relatives";
+
+chart_reasons_data.data[2]=parseFloat(all_country_data[country_code].reasons.money);
+chart_reasons_data.labels[2]="Lack of money or other resources";
+
+chart_reasons_data.data[3]=parseFloat(all_country_data[country_code].reasons.death);
+chart_reasons_data.labels[3]="Death of a household member";
+    
+chart_reasons_data.data[4]=parseFloat(all_country_data[country_code].reasons.companies);
+chart_reasons_data.labels[4]="Companies may seize";
+    
+chart_reasons_data.data[5]=parseFloat(all_country_data[country_code].reasons.government);
+chart_reasons_data.labels[5]="Government may seize";
+    
+chart_reasons_data.data[6]=parseFloat(all_country_data[country_code].reasons.customary);
+chart_reasons_data.labels[6]="Issues with customary authorities";
+
+for (var the_reason = 0; the_reason < 7; the_reason++) {
+    if (chart_reasons_data.data[the_reason] == -1) {
+        chart_reasons_data.data[the_reason] = 0.00001;
+        console.log("Unused Reason found at index "+the_reason+" for "+chart_reasons_data.labels[the_reason]);
+    };
+};
+var list = [];
+for (var j = 0; j < chart_reasons_data.data.length; j++) 
+    list.push({'name': chart_reasons_data.data[j], 'age': chart_reasons_data.labels[j]});
+
+//2) sort:
+list.sort(function(a, b) {
+    return ((a.name > b.name) ? -1 : ((a.name == b.name) ? 0 : 1));
+    //Sort could be modified to, for example, sort on the age 
+    // if the name is the same.
+});
+console.log("Intial List");
+console.log(list);
+//3) separate them back out:
+chart_reasons_data.data[0] = 0;
+console.log(chart_reasons_data)
+chart_reasons_data.labels[0] = " ";
+console.log(chart_reasons_data.labels);
+for (var k = 0; k < (list.length); k++) {
+    chart_reasons_data.data[k+1] = list[k].name;
+    chart_reasons_data.labels[k+1] = list[k].age;
+};
+console.log(chart_reasons_data);
+
+console.log("SECTION FOUR: Documentation");
+var chart_documentation_data = {};
+chart_documentation_data['labels'] = [];
+chart_documentation_data['data'] = {};
+chart_documentation_data.data['nodocs']=[];
+chart_documentation_data.data['formal']=[];
+chart_documentation_data.data['informal']=[];
+
+chart_documentation_data.labels[0] = "Total";
+chart_documentation_data.data.formal[0] = parseFloat(all_country_data[country_code].docs.homes.allresp[0]);
+chart_documentation_data.data.informal[0] = parseFloat(all_country_data[country_code].docs.homes.allresp[1]);
+chart_documentation_data.data.nodocs[0] = parseFloat((100-all_country_data[country_code].docs.homes.allresp[0]-all_country_data[country_code].docs.homes.allresp[1])); console.log("No Docs was "+all_country_data[country_code].docs.homes.allresp[2]+"is now "+chart_documentation_data.data.nodocs[0]);
+
+chart_documentation_data.labels[1] = "Owners";
+chart_documentation_data.data.formal[1] = parseFloat(all_country_data[country_code].docs.homes.owner[0]);
+chart_documentation_data.data.informal[1] = parseFloat(all_country_data[country_code].docs.homes.owner[1]);
+chart_documentation_data.data.nodocs[1] = parseFloat((100-all_country_data[country_code].docs.homes.owner[0]-all_country_data[country_code].docs.homes.owner[1])); console.log("No Docs was "+all_country_data[country_code].docs.homes.owner[2]+"is now "+chart_documentation_data.data.nodocs[1]);
+
+chart_documentation_data.labels[2] = "Renters";
+chart_documentation_data.data.formal[2] = parseFloat(all_country_data[country_code].docs.homes.renter[0]);
+chart_documentation_data.data.informal[2] = parseFloat(all_country_data[country_code].docs.homes.renter[1]);
+chart_documentation_data.data.nodocs[2] = parseFloat((100-all_country_data[country_code].docs.homes.renter[0]-all_country_data[country_code].docs.homes.renter[1])); console.log("No Docs was "+all_country_data[country_code].docs.homes.renter[2]+"is now "+chart_documentation_data.data.nodocs[2]);
+
+chart_documentation_data.labels[3] = "Family Property";
+chart_documentation_data.data.formal[3] = parseFloat(all_country_data[country_code].docs.homes.permission[0]);
+chart_documentation_data.data.informal[3] = parseFloat(all_country_data[country_code].docs.homes.permission[1]);
+chart_documentation_data.data.nodocs[3] = parseFloat((100-all_country_data[country_code].docs.homes.permission[0]-all_country_data[country_code].docs.homes.permission[1])); console.log("No Docs was "+all_country_data[country_code].docs.homes.permission[2]+"is now "+chart_documentation_data.data.nodocs[3]);
+
+
+console.log(chart_documentation_data);
+
+console.log("SECTION TWO: WHO/Demo");
+
+var chart_insecurity_data_l = [];
+var chart_insecurity_data_r = [];
+for (var the_insecurity = 0; the_insecurity <3; the_insecurity++) {
+    chart_insecurity_data_l[the_insecurity] = [];
+    chart_insecurity_data_r[the_insecurity] = [];
+    chart_insecurity_data_l[the_insecurity][0] = parseFloat(all_country_data[country_code].insecurity.homes.male[the_insecurity]);
+    chart_insecurity_data_l[the_insecurity][1] = parseFloat(all_country_data[country_code].insecurity.homes.rural[the_insecurity]);
+    chart_insecurity_data_l[the_insecurity][2] = parseFloat(all_country_data[country_code].insecurity.homes.renter[the_insecurity]);
+    chart_insecurity_data_r[the_insecurity][0] = parseFloat(all_country_data[country_code].insecurity.homes.female[the_insecurity]);
+    chart_insecurity_data_r[the_insecurity][1] = parseFloat(all_country_data[country_code].insecurity.homes.urban[the_insecurity]);
+    chart_insecurity_data_r[the_insecurity][2] = parseFloat(all_country_data[country_code].insecurity.homes.owner[the_insecurity]);
+};
+
+
+
+
+	console.log("Final Insecurity Components");
+	console.log(chart_insecurity_data_l);
+	console.log(chart_insecurity_data_r);
+
+
+
+
+
+var c_t = new Chartist.Pie('.ch-allprop', {
+//  labels:
+//  chart_tenure_data['labels'],
+  series: 
+  	chart_allprop_data.data
+  	
+}, {
+  donut: true,
+  donutWidth: 50,
+  donutSolid: true,
+  chartPadding:50,
+
+ startAngle: 0,
+  showLabel: true,
+  labelInterpolationFnc: function (text) {
+        if (text > 1) {
+            return text + '%';
+        } else {
+            return "";
+        }
+      },
+      labelOffset: 45,
+      plugins: [
+            Chartist.plugins.fillDonut({
+                items: [{
+                    content: '<i class="pie-label"></i>',
+                    position: 'bottom',
+                    offsetY : 5,
+                    offsetX: 0
+                }, {
+                    content: 'All<br>Property'
+                }]
+            })
+        ],
+});
+
+var c_t = new Chartist.Pie('.ch-main', {
+//  labels:
+//  chart_tenure_data['labels'],
+  series: 
+    chart_main_data.data
+    
+}, {
+  donut: true,
+  donutWidth: 50,
+  donutSolid: true,
+  chartPadding:50,
+
+ startAngle: 0,
+  showLabel: true,
+  labelInterpolationFnc: function (text) {
+        if (text > 1) {
+            return text + '%';
+        } else {
+            return "";
+        }
+      },
+      labelOffset: 45,
+      plugins: [
+            Chartist.plugins.fillDonut({
+                items: [{
+                    content: '<i class="pie-label"></i>',
+                    position: 'bottom',
+                    offsetY : 5,
+                    offsetX: 0
+                }, {
+                    content: 'Homes'
+                }]
+            })
+        ],
+});
+
+var c_r = new Chartist.Bar('.ch-reasons', {
+  labels: 
+  	chart_reasons_data.labels,
+  series: [
+    chart_reasons_data.data
+
+    ]
+}, {
+	showLabel: true,
+  reverseData: true,
+  chartPadding: 5,
+  horizontalBars: true,
+  axisY: {
+  showGrid : false,
+    offset: 280,
+    labelOffset: {
+        y: 2
+    },
+
+  },
+  axisX: {
+showGrid: false,
+showLabel: false  	
+},
+  plugins: [
+    Chartist.plugins.ctBarLabels({
+      position: {
+        x: function (data) {
+            console.log(data);
+            if (data.value['x'] == 0.00001) { 
+                return data.x2 +100;
+                console.log("Question not asked")};
+        	console.log("data.x2="+data.x2);
+        
+        if (data.x2 >310){
+          return data.x2 - 18;
+      } else {
+      	return data.x2 + 10;
+      } 
+        }
+      },
+      labelOffset: {
+        y: 5,
+        x: 20
+      },
+      labelClass: "ch-reasons-labels",
+      labelInterpolationFnc: function (text) {
+      	if (text > 5) {
+        	return text + '%';
+    	} else if (text >= 1) {
+    		return "";
+    	} else if (text ==0.00001) {
+            text = 0.0;
+            value = 0.0;
+    		return "This question was not asked in this country.";
+    	} else {
+            return " "
+        }
+      }
+    })
+  ]
+});
+
+
+var c_d = new Chartist.Bar('.ch-docs', {
+  labels: chart_documentation_data.labels,
+  series: [
+  	chart_documentation_data.data.formal,
+  	chart_documentation_data.data.informal,
+  	chart_documentation_data.data.nodocs
+  ]
+}, {
+  stackBars: true,
+chartPadding: {  bottom: 0 },
+    horizontalBars: true,
+      axisY: {
+  showGrid : false,
+  showLabel: true,
+  offset: 50
+  },
+  axisX: {
+  	showGrid : false,
+  	showLabel: false,
+  	
+  },
+  plugins: [
+    Chartist.plugins.ctBarLabels({
+      position: {
+        x: function (data) {
+          return data.x2 - 20
+        }
+      },
+      labelOffset: {
+        y: 5
+      },
+      labelClass: "ch-documentation-labels",
+      labelInterpolationFnc: function (text) {
+      	if (text > 7) {
+        	return text + '%';
+    	} else {
+    		return "";
+    	}
+      }
+    })
+  ]
+}).on('draw', function(data) {
+  if(data.type === 'bar') {
+    data.element.attr({
+      style: 'stroke-width: 30px'
+    });
+  }
+});
+
+	//	<div class="ch-owners" id="chart-tenure-owners"><BR>
+
+var c_o_l = new Chartist.Bar('.ch-owners-l', {
+	series: [
+        chart_insecurity_data_l[1],
+	chart_insecurity_data_l[0],
+
+	chart_insecurity_data_l[2],
+	
+  ]
+},{
+  stackBars: true,
+  chartPadding: {  right: 0, left: 0 },
+    horizontalBars: true,
+        axisY: {
+  showGrid : false,
+  showLabel: false,
+  },
+  axisX: {
+    showGrid : false,
+    showLabel: false,
+    
+  },
+  axisY: {
+    offset: 60,
+        showGrid : false,
+    showLabel: false,
+  },
+  plugins: [
+    Chartist.plugins.ctBarLabels({
+      position: {
+        x: function (data) {
+   //         console.log("WHO DATA MODEL");
+     //       console.log(data);
+            var barwidth = data.x2-data.x1;
+            if (data.seriesIndex == 0) {
+                //console.log(data);
+                return data.x1-15;
+            } else {
+                return "";
+            }
+        }
+        },
+      labelOffset: {
+        y: 3
+      },
+      labelClass: "ch-owners-labels",
+      labelInterpolationFnc: function (text) {
+        if (text > 0) {
+            console.log(text);
+            return text + '%';
+        } else {
+            return " ";
+        }
+      }
+    })
+  ]
+}).on('draw', function(data) {
+  if(data.type === 'bar') {
+    data.element.attr({
+      style: 'stroke-width: 30px; padding-top: 20px; padding-bottom: 30px'
+    });
+  }
+});
+
+var c_o_r = new Chartist.Bar('.ch-owners-r', {
+	series: [
+        chart_insecurity_data_r[1],
+	chart_insecurity_data_r[0],
+
+	chart_insecurity_data_r[2],
+	
+  ]
+}, {
+  stackBars: true,
+
+  chartPadding: {  right: 0, left: 0},
+    horizontalBars: true,
+        axisY: {
+  showGrid : false,
+  showLabel: false,
+  },
+  axisX: {
+  	showGrid : false,
+  	showLabel: false,
+
+  },
+  axisY: {
+    offset: 60,
+        showGrid : false,
+    showLabel: false,
+  },
+  plugins: [
+    Chartist.plugins.ctBarLabels({
+      position: {
+        x: function (data) {
+   //         console.log("WHO DATA MODEL");
+     //       console.log(data);
+            var barwidth = data.x2-data.x1;
+            if (data.seriesIndex == 0) {
+                //console.log(data);
+                return data.x1-15;
+            } else {
+                return "";
+            }
+        }
+        },
+      labelOffset: {
+        y: 3
+      },
+      labelClass: "ch-owners-labels",
+      labelInterpolationFnc: function (text) {
+      	if (text > 0) {
+        	return text + '%';
+    	} else {
+    		return "";
+    	}
+      }
+    })
+  ]
+}).on('draw', function(data) {
+  if(data.type === 'bar') {
+    data.element.attr({
+      style: 'stroke-width: 30px; padding-top: 20px; padding-bottom: 30px'
+    });
+  }
+});
+
+/*$("#country_list").change(function() {
+    var selectedproject = document.getElementById("ProjectSelected");
+    selected_country = data_table[selectedproject.selectedIndex+1][0];
+    console.log("Select New Project: "+selected_country);
+    c_d.update({
+  
+  labels: chart_documentation_data.labels,
+  series: [
+  	chart_documentation_data[selected_country].formal,
+  	chart_documentation_data[selected_country].informal,
+  	chart_documentation_data[selected_country].nodocs
+  ]
+});
+    c_r.update({ labels: 
+  	chart_reasons_data['labels'][selected_country], series: [
+    chart_reasons_data[selected_country]
+
+    ]});
+    c_t.update({series: 
+  	chart_tenure_data[selected_country]
+  	
+});
+    c_o_r.update({ series: [
+	chart_insecurity_data_r[selected_country]["secure"],
+	chart_insecurity_data_r[selected_country]["insecure"],
+	chart_insecurity_data_r[selected_country]["unknown"],
+	
+  ]});
+    c_o_l.update({
+	series: [
+	chart_insecurity_data_l[selected_country]["secure"],
+	chart_insecurity_data_l[selected_country]["insecure"],
+	chart_insecurity_data_l[selected_country]["unknown"],
+	
+  ]});
+});*/
+
+var element = document.getElementById('pageone');
+var opt = {
+  margin:       0,
+  filename:     'myfile.pdf',
+  image:        { type: 'jpeg', quality: 0.98 },
+  html2canvas:  { scale: 2 },
+  jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+};
+
+// New Promise-based usage:
+html2pdf(element, opt);
+
+</script>
+</html>

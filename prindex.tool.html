@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="chartist.min.css">
     <script src="chartist.min.js"></script>
         <script src="jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
         <script src="chartist-bar-labels.js"></script>
         <script src="chartist-plugin-fill-donut.js"></script>
+        <script src="https://www.prindex.net/static/vendor/rahul/js/country_data.js"></script>
         <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Rubik">
+
    
     <style type="text/css">
     	body {
@@ -89,6 +93,71 @@
     		
     	}
 
+        .ch-owners-r .ct-series-a .ct-bar {
+            stroke: #FA5A14 !important;
+            stroke-width: 20px;
+        }
+
+        .ch-owners-r .ct-series-b .ct-bar {
+            stroke: #690028 !important;
+            stroke-width: 20px;
+        }
+
+        .ch-owners-labels {
+            font-size: 9;
+            stroke: orange !important;
+            z-index: 100;
+            overflow: visible;
+        }
+
+        .ch-owners-r .ct-series-a .ch-owners-labels {
+            z-index: 100;
+            stroke: #FA5A14 !important;
+       position: relative !important;
+            overflow: visible;
+        }
+
+        .ch-owners-r .ct-series-b .ch-owners-labels {
+            z-index: -1;
+            stroke: white !important;
+            display: none;
+        }
+
+        .ch-owners-r .ct-series-c .ch-owners-labels {
+            z-index: -1;
+            stroke: white !important;
+            display: none;
+        }
+
+        .ch-owners-l .ct-series-a .ct-bar {
+            stroke: #FA5A14 !important;
+            stroke-width: 20px;
+        }
+
+        .ch-owners-l .ct-series-b .ct-bar {
+            stroke: #690028 !important;
+            stroke-width: 20px;
+        }
+
+        .ch-owners-l .ct-series-a .ch-owners-labels {
+            z-index: 100;
+            stroke: #FA5A14 !important;
+       position: relative !important;
+            overflow: visible;
+        }
+
+        .ch-owners-l .ct-series-b .ch-owners-labels {
+            z-index: -1;
+            stroke: white !important;
+            display: none;
+        }
+
+        .ch-owners-l .ct-series-c .ch-owners-labels {
+            z-index: -1;
+            stroke: white !important;
+            display: none;
+        }
+
     	.ct-chart-donut .ct-label {
     		font-size: 20;
     		color: white !important;
@@ -127,11 +196,30 @@
     		color: black;
     		
     	}
+
+
+        .ch-docs .ct-series-a .ct-bar {
+            stroke: #1496A0 !important;
+        }
+
+        .ch-docs .ct-series-b .ct-bar {
+            stroke: #FFEF32 !important;
+        }
+
+        .ch-docs .ct-series-b .ch-documentation-labels {
+     
+
+            stroke: #4C4C4C !important;
+        }
+
+        .ch-docs .ct-series-c .ct-bar {
+            stroke: #5AC88C !important;
+        }
     	#chart-tenure-allprop {
             display: inline-block;
-            width: 220;
+            width: 240;
             margin-left: -10;
-            margin-right: 25;
+            margin-right: 0;
 
    
     		
@@ -140,9 +228,9 @@
         #chart-tenure-main {
                  
         display: inline-block;
-            margin-left: 25;
+            margin-left: 0;
             margin-right: 0;
-            width: 220;
+            width: 240;
             height: 200;
         }
 		.chart-key {
@@ -165,7 +253,6 @@
     	}
 
     	#tenure-pie {
-    		height:250;
     		float:left;
     	}
 
@@ -202,11 +289,11 @@
             vertical-align: top;
     		
     	}
+        svg.ct-chart-bar, svg.ct-chart-line{
+    overflow: visible;
+}
 
-    	.ch-owners-labels {
-    		font-size: 9;
-    		stroke: white !important;
-    	}
+
 
     	.ch-documentation-labels {
     		font-size: 10;
@@ -294,7 +381,7 @@
     	#chart-tenure-owners-l {
     		
     		display: inline-block;
-    		width: 210;
+    		width: 220;
     		margin-left: -25;
     		margin-right: 20;
 
@@ -303,7 +390,7 @@
     	display: inline-block;
     		margin-left: -25;
     		margin-right: 25;
-    		width: 210;
+    		width: 220;
     	}
 
     	#brand {
@@ -580,9 +667,10 @@
 		<div class="ch-owners-r" id="chart-tenure-owners-r"></div>
 	</div>
 <div class="chart-key" style="margin-top: -45; margin-left: 120px" id="key-documentation">
-			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #690028"></div>Secure</div>
+			
 			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #FA5A14"></div>Insecure</div>
-			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #BEBEAF"></div>No Answer</div>
+			<div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #690028"></div>Secure</div>
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #BEBEAF"></div>No Answer</div>
 		</div>
 </div>
 </div>
@@ -614,9 +702,10 @@
         <div class="chart-id">Documentation</div><div class="chart-description-white" style="margin-top: -2px;">Types of property documentation held by people,<BR>broken down by tenure arrangements</BR></div>
         <div class="ch-docs" id="chart-documentation"></div>
         <div class="chart-key" style="margin-top: -20; margin-right: -20px" id="key-documentation">
-            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #690028"></div>Formal Documents</div>
-            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #FA5A14"></div>Informal Documents</div>
-            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #BEBEAF"></div>No Documents</div>
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #1496A0"></div>Formal Documents</div>
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #FFEF32"></div>Informal Documents</div>
+            <div class="chart-element" style="color:black"><div class="chart-key-example" style="background-color: #5AC88C"></div>No Documents</div>
+
         </div>
     </div>
 </div>
@@ -886,13 +975,109 @@ For the full list of which documents are considered as Formal Documents and Info
     "2%",
     "968",
     "2018"
+    ],
+    [
+"Philippines",
+"48%",
+"51%",
+"1%",
+"46%",
+"52%",
+"2%",
+"12%",
+"34%",
+"54%",
+"4%",
+"28%",
+"68%",
+"23%",
+"43%",
+"34%",
+"14%",
+"33%",
+"53%",
+"36%",
+"1%",
+"63%",
+"72%",
+"2%",
+"26%",
+"49%",
+"1%",
+"50%",
+"44%",
+"0%",
+"56%",
+"47%",
+"2%",
+"51%",
+"45%",
+"1%",
+"54%",
+"77%",
+"39%",
+"24%",
+"19%",
+"42%",
+"37%",
+"24%",
+"1015",
+"2019"
+    ],
+    [
+"Ecuador",
+"19%",
+"69%",
+"12%",
+"18%",
+"70%",
+"12%",
+"35%",
+"6%",
+"59%",
+"2%",
+"4%",
+"94%",
+"37%",
+"13%",
+"50%",
+"50%",
+"4%",
+"46%",
+"6%",
+"11%",
+"83%",
+"39%",
+"8%",
+"53%",
+"17%",
+"14%",
+"69%",
+"22%",
+"6%",
+"72%",
+"16%",
+"15%",
+"69%",
+"19%",
+"10%",
+"71%",
+"21%",
+"11%",
+"6%",
+"1%",
+"5%",
+"3%",
+"0%",
+"985",
+"2018"
     ]
     ];
 
 var reason_insert = 37;
 var doc_insert = 7;
 var demo_insert = 19;
-var selected_country_index = 4;
+var selected_country_index = 6;
 var the_sample = data_table[selected_country_index][data_table[selected_country_index].length -2];
 var the_year = data_table[selected_country_index][data_table[selected_country_index].length -1];
 var selected_country=data_table[selected_country_index][0];
@@ -1226,19 +1411,20 @@ var c_t = new Chartist.Pie('.ch-allprop', {
   	
 }, {
   donut: true,
-  donutWidth: 50,
+  donutWidth: 25,
   donutSolid: true,
+  chartPadding:25,
 
  startAngle: 0,
-
   showLabel: true,
   labelInterpolationFnc: function (text) {
-      	if (text > 9) {
-        	return text + '%';
-    	} else {
-    		return "";
-    	}
+        if (text > 1) {
+            return text + '%';
+        } else {
+            return "";
+        }
       },
+      labelOffset: 30,
       plugins: [
             Chartist.plugins.fillDonut({
                 items: [{
@@ -1261,18 +1447,20 @@ var c_t = new Chartist.Pie('.ch-main', {
     
 }, {
   donut: true,
-  donutWidth: 50,
+  donutWidth: 25,
   donutSolid: true,
+  chartPadding:25,
 
  startAngle: 0,
   showLabel: true,
   labelInterpolationFnc: function (text) {
-        if (text > 9) {
+        if (text > 1) {
             return text + '%';
         } else {
             return "";
         }
       },
+      labelOffset: 30,
       plugins: [
             Chartist.plugins.fillDonut({
                 items: [{
@@ -1281,7 +1469,7 @@ var c_t = new Chartist.Pie('.ch-main', {
                     offsetY : 5,
                     offsetX: 0
                 }, {
-                    content: 'Main<br>Residence'
+                    content: 'Homes'
                 }]
             })
         ],
@@ -1403,12 +1591,13 @@ chartPadding: {  bottom: 0 },
 
 var c_o_l = new Chartist.Bar('.ch-owners-l', {
 	series: [
+        chart_insecurity_data_l[selected_country]["insecure"],
 	chart_insecurity_data_l[selected_country]["secure"],
-	chart_insecurity_data_l[selected_country]["insecure"],
+
 	chart_insecurity_data_l[selected_country]["unknown"],
 	
   ]
-}, {
+},{
   stackBars: true,
   chartPadding: {  right: 0, left: 0 },
     horizontalBars: true,
@@ -1417,32 +1606,41 @@ var c_o_l = new Chartist.Bar('.ch-owners-l', {
   showLabel: false,
   },
   axisX: {
-  	showGrid : false,
-  	showLabel: false,
-  	
+    showGrid : false,
+    showLabel: false,
+    
+  },
+  axisY: {
+    offset: 60,
+        showGrid : false,
+    showLabel: false,
   },
   plugins: [
     Chartist.plugins.ctBarLabels({
       position: {
         x: function (data) {
+   //         console.log("WHO DATA MODEL");
+     //       console.log(data);
             var barwidth = data.x2-data.x1;
-            if (barwidth > 35) {
-                return data.x2 - 15;
+            if (data.seriesIndex == 0) {
+                //console.log(data);
+                return data.x1-15;
             } else {
-                return data.x1 + 11;
+                return "";
             }
         }
-      },
+        },
       labelOffset: {
-        y: 5
+        y: 3
       },
       labelClass: "ch-owners-labels",
       labelInterpolationFnc: function (text) {
-      	if (text > 11) {
-        	return text + '%';
-    	} else {
-    		return "";
-    	}
+        if (text > 0) {
+            console.log(text);
+            return text + '%';
+        } else {
+            return " ";
+        }
       }
     })
   ]
@@ -1456,8 +1654,9 @@ var c_o_l = new Chartist.Bar('.ch-owners-l', {
 
 var c_o_r = new Chartist.Bar('.ch-owners-r', {
 	series: [
+        chart_insecurity_data_r[selected_country]["insecure"],
 	chart_insecurity_data_r[selected_country]["secure"],
-	chart_insecurity_data_r[selected_country]["insecure"],
+
 	chart_insecurity_data_r[selected_country]["unknown"],
 	
   ]
@@ -1473,26 +1672,34 @@ var c_o_r = new Chartist.Bar('.ch-owners-r', {
   axisX: {
   	showGrid : false,
   	showLabel: false,
-  	
+
+  },
+  axisY: {
+    offset: 60,
+        showGrid : false,
+    showLabel: false,
   },
   plugins: [
     Chartist.plugins.ctBarLabels({
       position: {
         x: function (data) {
+   //         console.log("WHO DATA MODEL");
+     //       console.log(data);
             var barwidth = data.x2-data.x1;
-            if (barwidth > 35) {
-                return data.x2 - 15;
+            if (data.seriesIndex == 0) {
+                //console.log(data);
+                return data.x1-15;
             } else {
-                return data.x1 + 11;
+                return "";
             }
         }
         },
       labelOffset: {
-        y: 5
+        y: 3
       },
       labelClass: "ch-owners-labels",
       labelInterpolationFnc: function (text) {
-      	if (text > 9) {
+      	if (text > 0) {
         	return text + '%';
     	} else {
     		return "";
