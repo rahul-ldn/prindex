@@ -64877,7 +64877,7 @@ function rs_get_country_name(new_country_code) {
   for (var cm_index=0; cm_index<country_name_map.length;cm_index++)
   {
    // console.log("Examining "+country_name_map[cm_index].Name);
-    if (new_country_code() == country_name_map[cm_index].Code) {
+    if (new_country_code == country_name_map[cm_index].Code) {
       c_n=country_name_map[cm_index].Name;
       console.log("Name for "+new_country_code+" found: "+c_n);
     }
