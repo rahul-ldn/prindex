@@ -1140,14 +1140,14 @@ showLabel: false
         x: function (data) {
             console.log(data);
             if (data.value['x'] == 0.00001) { 
-                return data.x2 +100;
+                return data.x2 +150;
                 console.log("Question not asked")};
         	console.log("data.x2="+data.x2);
         
         if (data.x2 >310){
           return data.x2 - 18;
       } else {
-      	return data.x2 + 10;
+      	return data.x2 + 15;
       } 
         }
       },
@@ -1157,9 +1157,9 @@ showLabel: false
       },
       labelClass: "ch-reasons-labels",
       labelInterpolationFnc: function (text) {
-      	if (text > 2) {
+      	if (text >= 1) {
         	return text + '%';
-    	} else if (text >= 1) {
+    	} else if (text >= 0.5) {
     		return "";
     	} else if (text ==0.00001) {
             text = 0.0;
@@ -1207,7 +1207,7 @@ chartPadding: {  bottom: 0 },
       },
       labelClass: "ch-documentation-labels",
       labelInterpolationFnc: function (text) {
-      	if (text > 7) {
+      	if (text > 5) {
         	return text + '%';
     	} else {
     		return "";
